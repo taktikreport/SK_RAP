@@ -196,6 +196,49 @@
   .term .t{font-family:var(--display);font-weight:800;letter-spacing:-.01em;font-size:22px;color:var(--accent);line-height:1}
   .term .d{font-size:14px;margin-top:8px}
 
+  /* THE RAP GAME */
+  .game-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px}
+  .game-big{font-family:var(--display);font-weight:800;font-size:clamp(20px,3vw,28px);letter-spacing:-.02em;margin-bottom:20px}
+  .game-label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .game-input{width:100%;max-width:340px;background:var(--base);border:1px solid var(--line);border-radius:100px;color:var(--text);font-family:var(--body);font-size:16px;padding:12px 18px;outline:none;margin-bottom:16px;display:block}
+  .game-input:focus{border-color:var(--accent)}
+  .game-hint{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:14px}
+  .qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .qcount{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .qtimerN{font-family:var(--display);font-weight:800;font-size:26px;color:var(--accent)}
+  .qtimer{height:6px;background:var(--panel-2);border-radius:100px;overflow:hidden;margin-bottom:20px}
+  .qtimer-bar{height:100%;width:100%;background:var(--accent)}
+  .qcat{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .qtext{font-family:var(--display);font-weight:700;letter-spacing:-.01em;font-size:clamp(20px,3vw,30px);line-height:1.12;margin-bottom:22px}
+  .opts{display:grid;gap:10px}
+  .opt{text-align:left;background:var(--base);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-family:var(--body);font-size:15px;color:var(--text);cursor:pointer;transition:.12s;display:flex;align-items:center;gap:12px}
+  .opt:hover{border-color:var(--text)}
+  .opt .mk{width:24px;height:24px;border:1px solid var(--line);border-radius:50%;flex:0 0 24px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .opt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--base))}
+  .opt.sel .mk{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px}
+  .qmulti{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .res-score{font-family:var(--display);font-weight:800;font-size:clamp(40px,8vw,72px);letter-spacing:-.03em;line-height:1}
+  .res-sub{color:var(--muted);font-size:16px;margin:8px 0 20px}
+  .review{margin-top:8px;display:grid;gap:10px}
+  .rev{background:var(--base);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;font-size:14px}
+  .rev.ok{border-left-color:var(--teal)}
+  .rev .rq{font-weight:700;margin-bottom:4px}
+  .rev .ra{color:var(--muted);font-family:var(--mono);font-size:12px;line-height:1.5}
+  .lb-wrap{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:22px;margin-top:8px}
+  .lb-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .lb-title{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em}
+  .lb-best{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  .lb-table{width:100%;border-collapse:collapse;font-size:14px}
+  .lb-table th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .lb-table td{padding:10px;border-bottom:1px solid var(--line)}
+  .lb-table tr:last-child td{border-bottom:none}
+  .lb-rank{font-family:var(--display);font-weight:800;width:42px}
+  .lb-nick{font-weight:600}
+  .lb-sc{font-family:var(--mono);color:var(--muted)}
+  .lb-row1 .lb-rank,.lb-row1 .lb-nick{color:var(--accent)}
+  .lb-empty{color:var(--muted);font-family:var(--mono);font-size:13px;padding:10px 0}
+
   footer{padding:48px 24px 64px;max-width:1240px;margin:0 auto;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
   footer .mono{font-family:var(--mono)}
   footer a{color:var(--accent)}
@@ -231,6 +274,7 @@
       <a href="#prod-sec">Producenti</a>
       <a href="#tl-sec">Mílniky</a>
       <a href="#tier-sec">Tier list</a>
+      <a href="#game-sec">Rap Game</a>
       <a href="#gloss-sec">Glosár</a>
     </nav>
   </div>
@@ -318,8 +362,45 @@
   <div class="pool" id="pool" data-tier="pool"><div class="pool-h">Zásobník albumov</div></div>
 </section>
 
+<section id="game-sec">
+  <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">The Rap Game</h2></div>
+  <p class="sec-sub">Súťažný kvíz: 10 náhodných otázok, 15 sekúnd na každú (nestihneš googliť), správne odpovede až na konci. Najvyššie skóre a najrýchlejší čas vedú rebríček. Hrať môžeš opakovane.</p>
+
+  <div id="game-intro" class="game-card">
+    <div class="game-big" id="poolInfo">Pripravujem otázky…</div>
+    <label class="game-label" for="nick">Tvoja prezývka</label>
+    <input id="nick" class="game-input" type="text" maxlength="24" placeholder="napr. RapFanBA" autocomplete="off">
+    <button class="btn primary" id="startBtn">Štart hry →</button>
+    <p class="game-hint">10 otázok · 15 s na otázku · odpovede na konci · pri zhode rozhoduje čas</p>
+  </div>
+
+  <div id="game-play" class="game-card" style="display:none">
+    <div class="qtop"><span class="qcount" id="qcount">Otázka 1/10</span><span class="qtimerN" id="qtimerN">15</span></div>
+    <div class="qtimer"><div class="qtimer-bar" id="qbar"></div></div>
+    <div class="qcat" id="qcat"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qnav"><span class="qmulti" id="qmulti"></span><button class="btn primary" id="nextBtn">Ďalej →</button></div>
+  </div>
+
+  <div id="game-result" class="game-card" style="display:none">
+    <div class="res-score" id="resScore"></div>
+    <div class="res-sub" id="resSub"></div>
+    <div class="tier-tools">
+      <button class="btn primary" id="againBtn">Hrať znova</button>
+      <button class="btn" id="reviewBtn">Zobraz správne odpovede</button>
+    </div>
+    <div class="review" id="review" style="display:none"></div>
+  </div>
+
+  <div class="lb-wrap">
+    <div class="lb-head"><h3 class="lb-title">Rebríček</h3><span class="lb-best" id="lbBest"></span></div>
+    <div id="lbBox"><div class="lb-empty">Načítavam rebríček…</div></div>
+  </div>
+</section>
+
 <section id="gloss-sec">
-  <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Glosár slangu</h2></div>
+  <div class="sec-head"><span class="sec-num">08</span><h2 class="sec-title">Glosár slangu</h2></div>
   <p class="sec-sub">Bežné výrazy, na ktoré v textoch a rozhovoroch narazíš.</p>
   <div class="gloss" id="gloss"></div>
 </section>
@@ -825,6 +906,112 @@ document.getElementById('pngBtn').addEventListener('click',()=>{
   .catch(()=>showToast('Export zlyhal'));
 });
 if(location.hash.startsWith('#tier='))decodeState(location.hash.slice(6));
+
+/* THE RAP GAME */
+// Rebríček: prázdne = lokálny (localStorage). Pre ZDIEĽANÝ vlož Firebase RTDB URL,
+// napr. "https://tvoj-projekt-default-rtdb.europe-west1.firebasedatabase.app"
+const LEADERBOARD_URL="";
+const Q_TIME=15;
+let QUESTIONS=[];
+const FALLBACK_Q=[
+ {id:"q0001",type:"single",category:"albumy",difficulty:1,artist:"Separ",question:"Ktorý z týchto albumov vydal Separ v roku 2023?",options:["Pancier","OG","Flowdemort","Pirát","Neviem"],correct:[2],explain:"Flowdemort vyšiel 2023; Neviem až 2025."},
+ {id:"q0002",type:"multi",category:"spoluprace",difficulty:1,artist:"Kontrafakt",question:"Ktorí dvaja raperi tvoria jadro Kontrafaktu?",options:["Rytmus","Kali","Ego","Separ","Pil C"],correct:[0,2],explain:"Kontrafakt = Rytmus + Ego."},
+ {id:"q0003",type:"single",category:"scena",difficulty:2,artist:"Samey",question:"Z ktorého mesta pochádza Haha Crew (Samey, Dalyb)?",options:["Bratislava","Košice","Piešťany","Trnava","Nitra"],correct:[1],explain:"Haha Crew je z Košíc."},
+ {id:"q0004",type:"single",category:"producenti",difficulty:2,artist:"Kali",question:"Kto je dvorný producent Kaliho?",options:["Mjay Beatz","Peter Pann","DJ Wich","Komander","Grimaso"],correct:[1],explain:"Kali spolupracuje s Petrom Pannom."},
+ {id:"q0005",type:"single",category:"albumy",difficulty:1,artist:"Vec",question:"Ktorý album (Aurel) vydal Vec v roku 2005?",options:["Trosky","Dobré ráno","Egotron","Pancier","Záblesky"],correct:[1],explain:"Dobré ráno (2005)."},
+ {id:"q0006",type:"single",category:"scena",difficulty:2,artist:"Separ",question:"Ako sa volá label, ktorý vedie Separ?",options:["Comebackgang","Donmays","Real Newz","Trueself","Milion+"],correct:[1],explain:"Donmays."},
+ {id:"q0007",type:"single",category:"slang",difficulty:1,artist:"",question:"Čo znamená feat?",options:["Sólo skladba","Hosťovanie iného interpreta","Producentský podpis","Koncert","Vydavateľstvo"],correct:[1]},
+ {id:"q0008",type:"single",category:"spoluprace",difficulty:2,artist:"Pil C",question:"S kým nahral Pil C album Vojna (2024)?",options:["Separ","Gleb","Luca Brassi10x","Kali","Momo"],correct:[2]},
+ {id:"q0009",type:"multi",category:"spoluprace",difficulty:3,artist:"H16",question:"Ktorí z nich boli členmi H16?",options:["Otecko","Momo","Majk Spirit","Cigo","Vec"],correct:[0,2,3]},
+ {id:"q0010",type:"single",category:"diskografia",difficulty:2,artist:"Rytmus",question:"Ktorý album je Rytmusov debut z roku 2006?",options:["Kral","Fenomén","Bengoro","Krstný otec","Bengoro II"],correct:[2]},
+ {id:"q0011",type:"single",category:"scena",difficulty:3,artist:"Momo",question:"Akú tému má album Momo – Milovaný (2026)?",options:["Šport","Vieru","Politiku","Cestovanie","Gastronómiu"],correct:[1]},
+ {id:"q0012",type:"single",category:"producenti",difficulty:2,artist:"Gleb",question:"Kto je dvorný producent Gleba?",options:["Peter Pann","Komander","Mjay Beatz","Smart","BigSip"],correct:[1]}
+];
+function gid(x){return document.getElementById(x);}
+function gesc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function gshuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function fmtTime(ms){var s=ms/1000;var m=Math.floor(s/60);var r=s-m*60;return m+':'+(r<10?'0':'')+r.toFixed(1);}
+async function loadQuestions(){
+ try{var r=await fetch('questions.json',{cache:'no-store'});if(r.ok){var j=await r.json();if(Array.isArray(j)&&j.length)QUESTIONS=j;}}catch(e){}
+ if(!QUESTIONS.length)QUESTIONS=FALLBACK_Q;
+ gid('poolInfo').textContent='Otázok v databáze: '+QUESTIONS.length+' · dostaneš 10 náhodných';
+}
+function pick10(){return gshuffle(QUESTIONS).slice(0,Math.min(10,QUESTIONS.length)).map(function(q){
+  var sh=gshuffle(q.options.map(function(_,i){return i;}));
+  var opts=sh.map(function(i){return q.options[i];});
+  var corr=q.correct.map(function(c){return sh.indexOf(c);}).sort(function(a,b){return a-b;});
+  return {id:q.id,type:q.type,category:q.category,artist:q.artist,question:q.question,explain:q.explain,options:opts,correct:corr};
+});}
+var game=null,qTimer=null;
+function startGame(){var nick=(gid('nick').value||'').trim()||'Anonym';
+ game={nick:nick,qs:pick10(),i:0,answers:[],t0:performance.now()};
+ gid('game-intro').style.display='none';gid('game-result').style.display='none';gid('game-play').style.display='';
+ showQ();}
+function showQ(){var q=game.qs[game.i];game.sel=[];
+ gid('qcount').textContent='Otázka '+(game.i+1)+'/'+game.qs.length;
+ gid('qcat').textContent=(q.category||'')+(q.artist?(' · '+q.artist):'');
+ gid('qtext').textContent=q.question;
+ var multi=q.type==='multi'||q.correct.length>1;
+ gid('qmulti').textContent=multi?'Viac správnych — označ všetky':'Jedna správna';
+ var opts=gid('opts');opts.innerHTML='';
+ q.options.forEach(function(o,i){var b=document.createElement('button');b.className='opt';
+  b.innerHTML='<span class="mk">'+String.fromCharCode(65+i)+'</span><span>'+gesc(o)+'</span>';
+  b.addEventListener('click',function(){
+   if(multi){var k=game.sel.indexOf(i);if(k>=0){game.sel.splice(k,1);b.classList.remove('sel');}else{game.sel.push(i);b.classList.add('sel');}}
+   else{game.sel=[i];Array.prototype.forEach.call(opts.children,function(c){c.classList.remove('sel');});b.classList.add('sel');}
+  });opts.appendChild(b);});
+ startQTimer();}
+function startQTimer(){var left=Q_TIME,bar=gid('qbar'),num=gid('qtimerN');
+ bar.style.transition='none';bar.style.width='100%';void bar.offsetWidth;
+ bar.style.transition='width '+Q_TIME+'s linear';bar.style.width='0%';
+ num.textContent=left;clearInterval(qTimer);
+ qTimer=setInterval(function(){left--;num.textContent=Math.max(left,0);if(left<=0){clearInterval(qTimer);lockAnswer(true);}},1000);}
+function lockAnswer(timeout){clearInterval(qTimer);
+ var q=game.qs[game.i];var sel=(game.sel||[]).slice().sort(function(a,b){return a-b;});
+ var corr=q.correct.slice().sort(function(a,b){return a-b;});
+ var ok=sel.length===corr.length&&sel.every(function(v,k){return v===corr[k];});
+ game.answers.push({q:q,sel:sel,ok:ok,timeout:!!timeout});
+ game.i++;if(game.i>=game.qs.length)endGame();else showQ();}
+async function endGame(){clearInterval(qTimer);
+ var timeMs=Math.round(performance.now()-game.t0);
+ var score=game.answers.filter(function(a){return a.ok;}).length;
+ gid('game-play').style.display='none';gid('game-result').style.display='';
+ gid('resScore').textContent=score+' / '+game.qs.length;
+ gid('resSub').textContent='Čas: '+fmtTime(timeMs)+' · prezývka: '+game.nick;
+ buildReview();
+ await lbAdd({nick:game.nick,score:score,timeMs:timeMs,total:game.qs.length,date:new Date().toISOString().slice(0,10)});
+ renderLeaderboard();}
+function buildReview(){var el=gid('review');el.innerHTML='';el.style.display='none';
+ game.answers.forEach(function(a,n){var q=a.q;
+  var corr=q.correct.map(function(i){return q.options[i];}).join(', ');
+  var mine=a.sel.length?a.sel.map(function(i){return q.options[i];}).join(', '):'(bez odpovede)';
+  var d=document.createElement('div');d.className='rev'+(a.ok?' ok':'');
+  d.innerHTML='<div class="rq">'+(n+1)+'. '+gesc(q.question)+'</div><div class="ra">Správne: '+gesc(corr)+(a.ok?'':' · ty: '+gesc(mine))+(q.explain?(' — '+gesc(q.explain)):'')+'</div>';
+  el.appendChild(d);});}
+function lbRemote(){return /^https?:\/\//.test(LEADERBOARD_URL);}
+async function lbRead(){
+ if(lbRemote()){try{var r=await fetch(LEADERBOARD_URL.replace(/\/$/,'')+'/rapgame.json',{cache:'no-store'});if(r.ok){var j=await r.json();if(!j)return [];return Object.keys(j).map(function(k){return j[k];});}}catch(e){}return [];}
+ try{return JSON.parse(localStorage.getItem('rapgame_scores')||'[]');}catch(e){return [];}}
+async function lbAdd(entry){
+ if(lbRemote()){try{await fetch(LEADERBOARD_URL.replace(/\/$/,'')+'/rapgame.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(entry)});}catch(e){}return;}
+ try{var a=JSON.parse(localStorage.getItem('rapgame_scores')||'[]');a.push(entry);localStorage.setItem('rapgame_scores',JSON.stringify(a));}catch(e){}}
+async function renderLeaderboard(){
+ var rows=await lbRead();rows.sort(function(a,b){return b.score-a.score||a.timeMs-b.timeMs;});
+ var box=gid('lbBox'),best=gid('lbBest');
+ if(!rows.length){box.innerHTML='<div class="lb-empty">Zatiaľ žiadne výsledky — buď prvý!</div>';best.textContent='';return;}
+ var top=rows.slice(0,20);
+ var html='<table class="lb-table"><thead><tr><th>#</th><th>Prezývka</th><th>Skóre</th><th>Čas</th><th>Dátum</th></tr></thead><tbody>';
+ top.forEach(function(r,i){html+='<tr class="'+(i===0?'lb-row1':'')+'"><td class="lb-rank">'+(i+1)+'</td><td class="lb-nick">'+gesc(r.nick)+'</td><td class="lb-sc">'+r.score+'/'+(r.total||10)+'</td><td class="lb-sc">'+fmtTime(r.timeMs)+'</td><td class="lb-sc">'+gesc(r.date||'')+'</td></tr>';});
+ html+='</tbody></table>';box.innerHTML=html;
+ var full=rows.filter(function(r){return r.score===(r.total||10);});
+ if(full.length){full.sort(function(a,b){return a.timeMs-b.timeMs;});best.textContent='Najrýchlejšie plné skóre: '+gesc(full[0].nick)+' · '+fmtTime(full[0].timeMs);}
+ else best.textContent='';}
+gid('startBtn').addEventListener('click',startGame);
+gid('nextBtn').addEventListener('click',function(){lockAnswer(false);});
+gid('againBtn').addEventListener('click',function(){gid('game-result').style.display='none';gid('game-intro').style.display='';});
+gid('reviewBtn').addEventListener('click',function(){var r=gid('review');r.style.display=(r.style.display==='none')?'':'none';});
+gid('nick').addEventListener('keydown',function(e){if(e.key==='Enter')startGame();});
+loadQuestions().then(renderLeaderboard);
 
 /* THEME */
 const themeBtn=document.getElementById('themeBtn');
