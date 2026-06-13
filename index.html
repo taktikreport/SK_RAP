@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLOVENSKÝ RAP — atlas scény (TOP 30)</title>
+<meta name="description" content="Interaktívny atlas slovenského rapu: TOP 30 interpretov, diskografie, spolupráce, mapa pôvodu, sieť spoluprác, producentský katalóg a tier list builder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0E0E10; --panel:#16161A; --panel-2:#1E1E24; --line:#2A2A31;
+    --text:#E8E4DC; --muted:#8A8A92;
+    --red:#F03E2F; --yellow:#FFD400; --teal:#2BD4C4;
+    --display:'Anton',sans-serif; --body:'Space Grotesk',sans-serif; --mono:'Space Mono',monospace;
+  }
+  /* CYBERPUNK theme */
+  body[data-theme="cyber"]{
+    --base:#07070D; --panel:#0E0E1A; --panel-2:#141426; --line:#27274A;
+    --text:#EAF6FF; --muted:#7A7AA6;
+    --red:#FF2A6D; --yellow:#F9F002; --teal:#05D9E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--base);color:var(--text);font-family:var(--body);line-height:1.5;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .25s}
+  body[data-theme="cyber"]::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
+    background:repeating-linear-gradient(0deg,rgba(5,217,232,.05) 0 1px,transparent 1px 3px);mix-blend-mode:screen}
+  ::selection{background:var(--red);color:#fff}
+  a{color:inherit}
+
+  /* theme toggle */
+  .theme-btn{position:fixed;right:14px;top:14px;z-index:210;font-family:var(--mono);font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;background:var(--panel);color:var(--text);
+    border:1px solid var(--line);padding:9px 12px;cursor:pointer;transition:.15s}
+  .theme-btn:hover{border-color:var(--text)}
+
+  /* HERO */
+  .hero{position:relative;padding:64px 24px 40px;border-bottom:1px solid var(--line);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:3px 3px}
+  .hero::after{content:"";position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--red) 0 33%,var(--yellow) 33% 66%,var(--teal) 66% 100%)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+  .wordmark{font-family:var(--display);text-transform:uppercase;line-height:.86;
+    font-size:clamp(56px,15vw,200px);letter-spacing:-.01em;margin:10px 0 4px;
+    text-shadow:4px 4px 0 var(--red),8px 8px 0 rgba(43,212,196,.35)}
+  .wordmark span{display:block}
+  .wordmark .l2{color:transparent;-webkit-text-stroke:2px var(--text);text-shadow:4px 4px 0 var(--teal)}
+  body[data-theme="cyber"] .wordmark{text-shadow:0 0 12px var(--red),3px 3px 0 var(--teal)}
+  .hero p.lede{max-width:680px;color:var(--muted);font-size:clamp(15px,2.2vw,19px);margin-top:18px}
+  .stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:32px}
+  .stat .n{font-family:var(--display);font-size:40px;line-height:1}
+  .stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .stat.r .n{color:var(--red)} .stat.y .n{color:var(--yellow)} .stat.t .n{color:var(--teal)}
+  nav.jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:34px}
+  nav.jump a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    padding:8px 12px;border:1px solid var(--line);text-decoration:none;transition:.15s}
+  nav.jump a:hover{background:var(--text);color:var(--base)}
+
+  section{padding:64px 24px;border-bottom:1px solid var(--line);max-width:1200px;margin:0 auto}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+  .sec-num{font-family:var(--mono);color:var(--muted);font-size:13px}
+  .sec-title{font-family:var(--display);text-transform:uppercase;font-size:clamp(28px,5vw,46px);line-height:1}
+  .sec-sub{color:var(--muted);max-width:660px;margin-bottom:28px;font-size:15px}
+
+  .controls{position:sticky;top:0;z-index:40;background:rgba(14,14,16,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 24px}
+  body[data-theme="cyber"] .controls{background:rgba(7,7,13,.92)}
+  .controls-inner{max-width:1200px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .search{flex:1;min-width:200px;position:relative}
+  .search input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);
+    font-family:var(--mono);font-size:14px;padding:11px 14px 11px 38px;outline:none}
+  .search input:focus{border-color:var(--text)}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:9px 13px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--text)}
+  .chip[data-gen="legenda"][aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+  .chip[data-gen="spicka"][aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#000}
+  .chip[data-gen="nova"][aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#000}
+
+  #grid-sec{padding-top:40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{position:relative;background:var(--panel);border:1px solid var(--line);
+    padding:18px 18px 18px 22px;cursor:pointer;transition:.18s;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--muted)}
+  .card[data-gen="legenda"]::before{background:var(--red)}
+  .card[data-gen="spicka"]::before{background:var(--yellow)}
+  .card[data-gen="nova"]::before{background:var(--teal)}
+  .card:hover{transform:translateY(-3px);border-color:var(--text)}
+  .card .rank{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .card .nm{font-family:var(--display);text-transform:uppercase;font-size:26px;line-height:.95;margin:2px 0 3px}
+  .card .real{font-size:13px;color:var(--muted)}
+  .card .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 7px;border:1px solid var(--line);color:var(--muted)}
+  .card .since{position:absolute;right:14px;top:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .empty{color:var(--muted);font-family:var(--mono);padding:30px 0}
+
+  /* MODAL */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:none;
+    align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+  .modal-bg.open{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--line);max-width:680px;width:100%;position:relative;animation:pop .2s ease}
+  @keyframes pop{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
+  .modal .topbar{height:6px}
+  .modal[data-gen="legenda"] .topbar{background:var(--red)}
+  .modal[data-gen="spicka"] .topbar{background:var(--yellow)}
+  .modal[data-gen="nova"] .topbar{background:var(--teal)}
+  .modal-body{padding:26px 26px 30px}
+  .modal .close{position:absolute;right:14px;top:16px;background:none;border:1px solid var(--line);
+    color:var(--text);width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1;z-index:2}
+  .modal .close:hover{background:var(--text);color:var(--base)}
+  .modal .m-rank{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .modal .m-nm{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,7vw,52px);line-height:.9;margin:4px 0 6px}
+  .modal .m-real{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .modal .m-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .modal .m-bio{font-size:15px;margin-bottom:22px}
+  .block{margin-bottom:22px}
+  .block h4{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .disco{list-style:none}
+  .disco li{display:flex;gap:12px;padding:5px 0;font-size:14px;align-items:baseline}
+  .disco .yr{font-family:var(--mono);color:var(--teal);min-width:46px}
+  .disco .tt{flex:1}
+  .disco .ty{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase}
+  .collabs{display:flex;flex-wrap:wrap;gap:6px}
+  .collab{font-family:var(--mono);font-size:12px;padding:5px 9px;border:1px solid var(--line);cursor:pointer;transition:.15s}
+  .collab:hover{background:var(--text);color:var(--base)}
+  .kv{font-size:14px;margin-bottom:6px}
+  .kv b{color:var(--text)} .kv span{color:var(--muted)}
+  .update{background:var(--panel-2);border-left:3px solid var(--yellow);padding:12px 14px;font-size:14px}
+  .update .when{font-family:var(--mono);font-size:11px;color:var(--yellow);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}
+
+  /* MAP */
+  .map-wrap{border:1px solid var(--line);background:var(--panel);padding:16px;position:relative}
+  #skmap{display:block;width:100%;height:auto;max-height:520px}
+  #skPath{fill:var(--panel-2);stroke:var(--line);stroke-width:1.2}
+  .cdot{fill:var(--text);cursor:pointer;transition:.15s}
+  .clabel{font-family:var(--mono);font-size:11px;fill:var(--text)}
+  .ccount{font-family:var(--display);font-size:20px;fill:var(--red)}
+  .cityG:hover .cdot{r:11;fill:var(--red)}
+  .map-note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:10px}
+
+  /* NETWORK */
+  .net-wrap{border:1px solid var(--line);background:var(--panel);position:relative}
+  #net{display:block;width:100%;height:520px;cursor:grab}
+  .net-legend{position:absolute;left:14px;bottom:14px;display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);
+    font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:rgba(14,14,16,.72);padding:8px 12px}
+  body[data-theme="cyber"] .net-legend{background:rgba(7,7,13,.72)}
+  .net-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .net-hint{position:absolute;right:14px;top:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+  /* PRODUCERS */
+  .prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .prod{background:var(--panel);border:1px solid var(--line);padding:16px;border-top:3px solid var(--teal)}
+  .prod .pn{font-family:var(--display);text-transform:uppercase;font-size:22px;line-height:1}
+  .prod .pr{font-size:13px;color:var(--muted);margin-top:8px}
+  .prod .pr b{color:var(--text)}
+
+  /* TIMELINE */
+  .tl{position:relative;margin-left:8px;padding-left:28px;border-left:2px solid var(--line)}
+  .tl-item{position:relative;padding:0 0 28px}
+  .tl-item::before{content:"";position:absolute;left:-37px;top:3px;width:14px;height:14px;
+    background:var(--base);border:3px solid var(--yellow);border-radius:50%}
+  .tl-yr{font-family:var(--display);font-size:26px;line-height:1;color:var(--yellow)}
+  .tl-tx{font-size:15px;margin-top:4px}.tl-tx b{color:var(--text)}
+
+  /* TIER LIST */
+  .tier-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:10px 14px;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;transition:.15s}
+  .btn:hover{border-color:var(--text)}
+  .btn.primary{background:var(--teal);color:#000;border-color:var(--teal)}
+  .tier-row{display:flex;border:1px solid var(--line);border-bottom:none;min-height:64px}
+  .tier-row:last-of-type{border-bottom:1px solid var(--line)}
+  .tier-label{flex:0 0 64px;display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-size:30px;color:#000}
+  .tier-drop{flex:1;display:flex;flex-wrap:wrap;gap:8px;padding:10px;align-content:flex-start}
+  .tier-S .tier-label{background:#FF4D4D} .tier-A .tier-label{background:#FF9F45}
+  .tier-B .tier-label{background:#FFD400} .tier-C .tier-label{background:#9AE66E}
+  .tier-D .tier-label{background:#56C2E6}
+  .pool{margin-top:18px;border:1px dashed var(--line);padding:12px;min-height:80px;
+    display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+  .pool-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:4px}
+  .alb{position:relative;width:120px;min-height:54px;background:var(--panel-2);border:1px solid var(--line);
+    border-left:4px solid var(--muted);padding:7px 9px;cursor:grab;user-select:none;font-size:12px;line-height:1.25}
+  .alb[data-gen="legenda"]{border-left-color:var(--red)}
+  .alb[data-gen="spicka"]{border-left-color:var(--yellow)}
+  .alb[data-gen="nova"]{border-left-color:var(--teal)}
+  .alb.sel{outline:2px solid var(--text);outline-offset:1px}
+  .alb .at{font-weight:700} .alb .aa{color:var(--muted);font-family:var(--mono);font-size:10px;margin-top:3px}
+  .tier-help{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:12px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--base);
+    font-family:var(--mono);font-size:13px;padding:10px 16px;z-index:300;opacity:0;transition:.2s;pointer-events:none}
+  .toast.show{opacity:1}
+
+  /* GLOSSARY */
+  .gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+  .term{background:var(--panel);border:1px solid var(--line);padding:16px;transition:.15s}
+  .term:hover{border-color:var(--teal)}
+  .term .t{font-family:var(--display);text-transform:uppercase;font-size:22px;color:var(--teal);line-height:1}
+  .term .d{font-size:14px;margin-top:7px}
+
+  footer{padding:40px 24px 60px;max-width:1200px;margin:0 auto;color:var(--muted);font-size:13px}
+  footer .mono{font-family:var(--mono)}
+  footer a{color:var(--teal)}
+
+  @media(max-width:600px){
+    section{padding:48px 18px}.controls{padding:12px 14px}.hero{padding:44px 18px 30px}
+    .modal-bg{padding:16px 10px}.modal-body{padding:20px 18px 26px}
+    .tier-label{flex-basis:44px;font-size:22px}.alb{width:calc(50% - 4px)}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<button class="theme-btn" id="themeBtn">◐ Cyberpunk</button>
+
+<header class="hero">
+  <div class="eyebrow">Atlas scény · do roku 2026</div>
+  <h1 class="wordmark"><span>Slovenský</span><span class="l2">Rap</span></h1>
+  <p class="lede">Tridsať mien, ktoré držia slovenský hip-hop — od zakladateľov cez mainstreamovú špičku po novú vlnu trapu a drillu. Diskografie, spolupráce, mapa pôvodu, sieť featov, dvorní producenti aj tvoj vlastný tier list.</p>
+  <div class="stats">
+    <div class="stat r"><div class="n">30</div><div class="lbl">interpretov</div></div>
+    <div class="stat y"><div class="n">3</div><div class="lbl">generácie</div></div>
+    <div class="stat t"><div class="n">800k+</div><div class="lbl">mes. poslucháčov u jednotky</div></div>
+  </div>
+  <nav class="jump">
+    <a href="#grid-sec">01 · Interpreti</a>
+    <a href="#map-sec">02 · Mapa pôvodu</a>
+    <a href="#net-sec">03 · Sieť spoluprác</a>
+    <a href="#prod-sec">04 · Producenti</a>
+    <a href="#tl-sec">05 · Mílniky</a>
+    <a href="#tier-sec">06 · Tier list</a>
+    <a href="#gloss-sec">07 · Glosár</a>
+  </nav>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Hľadaj meno, mesto alebo žáner…" autocomplete="off">
+    </div>
+    <div class="chips" id="genChips">
+      <button class="chip" data-gen="legenda" aria-pressed="false">Legendy</button>
+      <button class="chip" data-gen="spicka" aria-pressed="false">Špička</button>
+      <button class="chip" data-gen="nova" aria-pressed="false">Nová vlna</button>
+    </div>
+  </div>
+</div>
+
+<section id="grid-sec">
+  <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">Interpreti</h2></div>
+  <p class="sec-sub">Klikni na kartu pre bio, diskografiu, spolupráce a posledné novinky. Farebný pruh značí generáciu.</p>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">Nič nesedí na tvoj filter. Skús iné slovo.</div>
+</section>
+
+<section id="map-sec">
+  <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Mapa pôvodu</h2></div>
+  <p class="sec-sub">Reálny obrys Slovenska. Body označujú mestá, číslo udáva počet interpretov odtiaľ. Bratislava je jasné centrum, scéna má však aj silný východ (Košice).</p>
+  <div class="map-wrap">
+    <svg id="skmap" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0,1024) scale(0.1,-0.1)">
+        <path id="skPath" d="M4737 7598 c-9 -13 -49 -58 -91 -102 l-75 -78 -65 7 c-58 6 -69 4 -96 -15 -19 -14 -30 -30 -30 -45 0 -13 -9 -46 -19 -73 -14 -35 -16 -53 -9 -66 11 -19 -3 -36 -28 -36 -12 0 -44 -69 -44 -94 0 -18 -112 -31 -139 -16 -29 15 -97 12 -111 -5 -15 -19 -120 -21 -120 -3 0 6 5 26 11 43 10 26 8 39 -10 79 -11 27 -21 69 -21 95 0 76 -16 86 -152 95 -92 7 -101 6 -165 -22 -68 -28 -69 -28 -98 -10 -35 21 -73 23 -145 7 -45 -10 -53 -9 -64 7 -10 13 -21 16 -52 11 -47 -8 -69 -32 -77 -84 -5 -32 -13 -42 -41 -56 -24 -11 -44 -32 -60 -64 -39 -74 -51 -86 -79 -79 -33 8 -53 -18 -60 -78 -6 -56 -30 -82 -120 -131 -36 -20 -246 -85 -273 -85 -2 0 -4 -6 -4 -13 0 -8 -13 -25 -29 -40 -21 -18 -32 -39 -36 -71 -4 -24 -4 -49 -1 -54 3 -6 -5 -34 -19 -64 -14 -29 -25 -64 -25 -78 0 -14 -9 -36 -20 -50 -14 -18 -20 -41 -20 -80 -1 -89 -24 -168 -59 -204 -31 -31 -32 -31 -156 -34 l-124 -4 -20 -31 c-10 -18 -22 -54 -26 -82 -4 -27 -16 -68 -27 -90 l-21 -41 -86 -2 c-96 -2 -79 8 -175 -107 -43 -52 -87 -75 -140 -75 -43 0 -104 -28 -111 -51 -7 -20 -79 -33 -135 -24 -26 4 -41 13 -48 29 -14 32 -75 40 -100 13 -32 -36 -68 -48 -112 -38 -37 8 -69 33 -70 53 0 4 -11 13 -24 20 -100 55 -129 68 -172 73 -46 7 -53 4 -91 -26 -23 -19 -57 -43 -75 -54 -23 -14 -43 -41 -65 -87 -20 -41 -40 -69 -53 -73 -11 -3 -30 -25 -42 -48 -11 -23 -31 -55 -43 -72 -13 -16 -26 -41 -30 -55 -4 -14 -18 -38 -30 -55 -12 -16 -27 -50 -34 -75 -20 -74 -32 -98 -57 -115 -20 -13 -24 -24 -24 -66 0 -27 5 -70 11 -95 11 -44 11 -46 -19 -77 -16 -18 -33 -42 -36 -54 -4 -12 -16 -25 -27 -28 -14 -5 -18 -12 -14 -25 4 -14 0 -19 -17 -22 -14 -2 -33 -20 -51 -50 -26 -42 -28 -48 -15 -73 13 -23 13 -33 0 -71 -8 -24 -18 -44 -23 -44 -5 0 -9 -25 -9 -55 0 -47 3 -55 19 -55 30 0 93 -68 85 -92 -8 -26 15 -108 31 -108 27 0 48 -38 41 -78 -4 -27 -1 -50 10 -71 9 -18 21 -59 27 -93 14 -72 53 -123 111 -142 32 -11 45 -24 70 -70 28 -52 30 -58 14 -69 -19 -15 -21 -23 -19 -104 l1 -63 30 0 c17 0 46 -9 66 -19 31 -17 49 -19 120 -14 70 5 84 4 84 -9 0 -29 45 -58 99 -65 49 -6 54 -9 89 -59 20 -30 44 -56 52 -59 23 -9 91 -103 102 -141 10 -40 79 -99 125 -109 26 -5 34 -14 44 -43 17 -54 46 -82 85 -82 31 0 74 -30 74 -52 0 -4 34 -36 75 -72 51 -43 88 -66 113 -71 20 -4 43 -12 51 -18 13 -11 98 -16 256 -17 28 0 67 7 87 16 37 17 38 16 57 -7 l19 -24 24 23 c30 27 63 28 153 2 38 -11 114 -24 169 -30 56 -6 127 -14 158 -20 50 -8 74 -5 180 21 68 17 127 34 131 38 5 5 25 0 45 -10 41 -21 73 -24 89 -8 12 12 53 13 167 3 49 -4 92 -2 115 5 46 14 96 60 115 105 13 30 19 35 64 41 31 4 58 2 70 -4 35 -18 72 -14 72 9 0 10 -9 24 -19 30 -11 5 -21 20 -23 32 -2 15 -17 29 -45 42 -44 22 -57 42 -68 110 -5 30 -1 48 17 82 20 39 21 46 9 80 -12 34 -12 39 5 51 10 7 27 13 38 13 37 0 50 17 51 62 1 62 14 96 38 104 20 7 140 14 227 14 26 -1 41 6 56 26 l22 27 35 -27 c35 -27 36 -27 68 -11 20 11 44 15 64 12 18 -3 37 -1 42 4 8 8 70 -6 177 -41 25 -8 32 -6 44 11 7 11 41 33 75 48 52 24 72 28 122 25 33 -2 73 -7 88 -10 21 -5 34 -1 52 16 l24 23 19 -23 18 -22 27 32 c20 23 27 43 27 73 0 26 8 51 20 67 11 14 20 39 20 57 0 17 5 35 10 38 6 3 10 17 10 30 0 19 7 24 39 30 28 5 54 20 90 55 45 44 55 49 84 44 51 -9 54 -11 61 -41 15 -57 64 -83 91 -47 11 15 15 15 56 -3 24 -11 53 -30 64 -42 19 -22 19 -24 2 -53 -12 -22 -15 -34 -7 -42 7 -7 14 -6 21 1 7 7 25 9 40 6 21 -4 30 -1 35 11 6 15 9 14 39 -4 18 -11 39 -20 48 -20 18 0 30 -40 16 -57 -6 -6 -8 -17 -4 -23 13 -21 39 -9 85 39 59 61 102 81 163 74 43 -5 47 -3 56 19 5 14 35 49 65 78 43 40 56 60 56 81 0 28 1 29 55 29 58 0 115 28 115 57 0 19 14 16 69 -12 l48 -24 20 22 c12 12 33 41 47 65 15 24 33 45 41 48 7 3 17 20 20 37 4 18 21 47 38 65 30 31 38 52 66 172 14 57 22 70 47 76 26 7 49 38 39 54 -3 5 0 12 7 17 51 32 87 120 56 139 -18 11 22 34 49 28 17 -5 23 -2 23 9 0 25 19 30 46 12 23 -15 27 -15 52 2 41 28 100 53 125 53 12 0 31 6 42 14 11 7 63 16 120 20 55 4 109 9 120 12 15 4 23 -2 32 -26 8 -21 18 -30 35 -31 104 -3 111 -5 122 -23 28 -48 45 -57 104 -55 66 2 152 -10 170 -24 6 -5 12 -18 12 -28 0 -12 11 -23 26 -29 34 -13 33 -13 44 14 6 16 25 30 57 42 26 9 55 23 64 31 8 7 23 13 32 13 9 0 19 5 22 11 5 7 12 5 23 -4 25 -22 92 -38 112 -27 10 5 20 27 24 49 7 45 16 49 131 54 51 2 60 5 63 22 6 32 19 38 39 20 32 -28 95 -75 103 -75 4 0 11 -19 16 -42 11 -53 59 -81 139 -82 40 -1 40 -1 47 -46 12 -78 20 -104 40 -124 25 -23 48 -77 48 -110 0 -18 6 -25 23 -28 14 -2 23 -11 25 -24 2 -12 12 -30 23 -40 10 -9 19 -23 19 -31 0 -7 11 -13 28 -13 15 -1 38 -7 51 -14 16 -9 34 -11 52 -6 16 5 38 6 50 3 24 -7 39 10 39 45 0 25 22 29 40 7 16 -19 34 -19 51 1 9 11 23 14 46 11 18 -3 33 -2 33 3 0 20 34 40 66 40 19 0 48 7 65 15 28 15 32 14 58 -4 26 -19 29 -19 45 -3 14 14 18 15 25 3 11 -18 111 -5 111 14 0 8 8 18 17 23 16 9 16 11 0 27 -22 22 -23 134 -1 230 9 39 19 113 23 166 7 98 26 149 55 149 8 0 16 7 20 15 3 9 21 25 41 36 20 12 35 29 35 40 0 12 28 38 78 73 76 53 79 57 95 115 20 71 21 97 6 107 -17 10 -3 60 27 89 23 23 26 32 21 73 -2 26 -6 52 -7 57 -1 6 -2 29 -1 52 1 38 5 46 41 69 l40 27 0 67 c0 54 4 70 20 85 11 10 35 51 54 91 35 72 36 73 68 68 43 -7 78 16 59 39 -9 12 -10 21 -2 36 6 11 11 38 11 60 0 22 5 52 10 67 22 56 -17 89 -69 58 -28 -16 -32 -16 -73 -1 -27 11 -56 15 -75 11 -28 -5 -33 -2 -66 49 -41 61 -68 74 -136 62 -20 -3 -68 -1 -105 5 -54 10 -65 15 -56 26 7 7 10 23 8 36 -3 20 -10 24 -66 29 -43 4 -69 12 -85 27 -12 11 -57 31 -101 45 -48 15 -83 32 -89 43 -6 11 -12 48 -13 84 -2 56 -5 66 -28 83 -14 10 -26 23 -26 28 0 5 -17 36 -37 69 -39 62 -76 87 -112 75 -15 -4 -25 2 -43 27 -16 23 -29 32 -45 30 -15 -2 -26 6 -39 27 -20 34 -37 34 -85 0 -21 -14 -25 -24 -21 -45 4 -23 2 -26 -12 -21 -10 4 -20 7 -22 7 -2 0 -4 10 -4 23 0 13 -13 36 -29 51 -16 16 -32 39 -35 52 -5 19 -13 24 -40 24 -60 0 -97 12 -127 42 -27 28 -32 29 -58 18 -16 -6 -37 -10 -47 -9 -11 2 -45 -5 -77 -15 -31 -11 -60 -16 -63 -13 -3 3 -21 -1 -39 -9 -48 -20 -88 -18 -118 6 -14 11 -35 20 -48 20 -12 0 -32 8 -43 18 -25 22 -130 47 -148 35 -7 -4 -29 -13 -48 -18 -31 -9 -35 -15 -38 -48 -2 -26 -10 -42 -27 -53 -31 -20 -54 -12 -105 37 -37 36 -43 39 -58 26 -9 -8 -38 -18 -64 -21 -44 -7 -48 -9 -48 -35 0 -27 41 -81 61 -81 5 0 9 -7 9 -15 0 -11 -11 -15 -38 -15 -28 0 -46 -8 -70 -29 -17 -17 -32 -35 -32 -42 0 -6 -11 -22 -25 -35 -14 -13 -25 -31 -25 -41 0 -14 -13 -22 -47 -31 -44 -12 -47 -12 -74 14 -19 18 -33 24 -48 19 -22 -7 -26 1 -12 24 6 10 2 24 -12 43 -21 28 -21 28 -41 9 -19 -17 -25 -18 -58 -8 -25 8 -38 18 -38 30 0 10 -7 20 -15 23 -8 4 -15 15 -15 26 0 15 -5 18 -17 14 -18 -7 -33 9 -33 37 0 10 -12 34 -26 53 -31 40 -74 45 -114 14 -32 -25 -41 -25 -74 1 l-26 20 0 -23 c0 -15 -16 -39 -40 -63 -39 -39 -40 -39 -77 -26 -21 7 -49 24 -63 36 -32 29 -66 46 -108 56 -28 6 -35 4 -48 -15 -8 -13 -26 -28 -41 -35 -23 -11 -29 -10 -40 5 -10 14 -24 17 -61 15 -26 -1 -48 -4 -50 -5 -1 -2 2 -15 8 -30 7 -19 7 -41 -1 -72 l-11 -44 -52 1 c-28 1 -62 4 -76 8 -41 13 -95 -25 -136 -95 -9 -16 -14 -17 -27 -6 -14 12 -18 7 -31 -39 -9 -29 -16 -58 -16 -64 0 -7 -9 -24 -20 -38 -11 -14 -25 -49 -31 -79 -28 -139 -35 -152 -58 -125 -6 8 -28 19 -50 25 -27 9 -41 19 -45 36 -7 27 -91 96 -118 96 -31 0 -54 -17 -67 -48 -7 -16 -24 -34 -37 -41 -58 -26 -214 0 -214 35 0 27 60 134 84 149 27 18 25 50 -5 66 -14 7 -17 14 -10 26 13 24 2 182 -17 230 -10 24 -24 43 -31 43 -8 0 -32 -12 -54 -27 -24 -17 -41 -23 -45 -16 -10 15 -52 35 -87 43 -29 6 -30 8 -35 70 l-5 65 -37 -3 c-44 -4 -88 21 -88 52 0 11 -7 30 -15 40 -8 11 -15 32 -15 48 0 18 -7 31 -21 39 -19 10 -21 17 -15 68 6 51 4 59 -16 78 -13 11 -33 26 -45 32 -14 7 -23 21 -23 35 0 40 -49 49 -73 14z"/>
+      </g>
+      <g id="cityLayer"></g>
+    </svg>
+    <div class="map-note">Polohy miest sú projekciou geografických súradníc do obrysu — schematické, nie katastrálne presné.</div>
+  </div>
+</section>
+
+<section id="net-sec">
+  <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Sieť spoluprác</h2></div>
+  <p class="sec-sub">Každý uzol je interpret, čiara je doložená spolupráca (feat / spoločný album). Ťahaj uzly, klikni pre profil. Veľkosť uzla rastie s počtom prepojení.</p>
+  <div class="net-wrap">
+    <canvas id="net"></canvas>
+    <div class="net-hint">ťahaj · klikni</div>
+    <div class="net-legend">
+      <span><i style="background:var(--red)"></i>Legendy</span>
+      <span><i style="background:var(--yellow)"></i>Špička</span>
+      <span><i style="background:var(--teal)"></i>Nová vlna</span>
+    </div>
+  </div>
+</section>
+
+<section id="prod-sec">
+  <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Producentský katalóg</h2></div>
+  <p class="sec-sub">Dvorní beatmakeri za zvukom scény — kto stojí za ktorými menami.</p>
+  <div class="prods" id="prods"></div>
+</section>
+
+<section id="tl-sec">
+  <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Mílniky scény</h2></div>
+  <p class="sec-sub">Body, ktoré formovali tvar slovenského rapu.</p>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section id="tier-sec">
+  <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Tier list albumov</h2></div>
+  <p class="sec-sub">Zostav si vlastný rebríček albumov a zdieľaj ho linkom alebo ako obrázok.</p>
+  <p class="tier-help">Na počítači ťahaj dlaždice myšou. Na mobile ťukni na album (vyberie sa) a potom ťukni na riadok S–D alebo na zásobník.</p>
+  <div class="tier-tools">
+    <button class="btn primary" id="shareBtn">Kopíruj zdieľací link</button>
+    <button class="btn" id="pngBtn">Stiahni ako obrázok</button>
+    <button class="btn" id="resetBtn">Vyčisti</button>
+  </div>
+  <div id="tierBoard">
+    <div class="tier-row tier-S" data-tier="S"><div class="tier-label">S</div><div class="tier-drop" data-tier="S"></div></div>
+    <div class="tier-row tier-A" data-tier="A"><div class="tier-label">A</div><div class="tier-drop" data-tier="A"></div></div>
+    <div class="tier-row tier-B" data-tier="B"><div class="tier-label">B</div><div class="tier-drop" data-tier="B"></div></div>
+    <div class="tier-row tier-C" data-tier="C"><div class="tier-label">C</div><div class="tier-drop" data-tier="C"></div></div>
+    <div class="tier-row tier-D" data-tier="D"><div class="tier-label">D</div><div class="tier-drop" data-tier="D"></div></div>
+  </div>
+  <div class="pool" id="pool" data-tier="pool"><div class="pool-h">Zásobník albumov</div></div>
+</section>
+
+<section id="gloss-sec">
+  <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Glosár slangu</h2></div>
+  <p class="sec-sub">Bežné výrazy, na ktoré v textoch a rozhovoroch narazíš.</p>
+  <div class="gloss" id="gloss"></div>
+</section>
+
+<footer>
+  <p class="mono">Dáta k roku 2026 · zostavené z verejných zdrojov (Wikipédia, Refresher, SME/Closer, Spotify, Deezer).</p>
+  <p style="margin-top:8px">Scéna sa rýchlo mení — čísla poslucháčov a „novinky" platia k zostaveniu stránky. Diskografie uvádzajú výber kľúčových vydaní; pri menej zdokumentovaných menách sú zámerne stručné.</p>
+</footer>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="topbar"></div>
+    <button class="close" id="closeM" aria-label="Zavrieť">×</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+<script>
+const GEN={legenda:{label:"Legenda / old school",color:"#F03E2F"},spicka:{label:"Špička",color:"#FFD400"},nova:{label:"Nová vlna",color:"#2BD4C4"}};
+
+const RAPPERS=[
+ {id:"kontrafakt",name:"Kontrafakt",real:"Rytmus · Ego · DJ Anys",gen:"legenda",type:"skupina",city:"Piešťany",lat:48.59,lon:17.83,since:2001,genres:["old school","battle rap"],producer:"DJ Anys",
+  bio:"Najznámejšia slovenská rapová skupina, ktorá v 2000s definovala mainstreamový hip-hop a bola odrazovým mostíkom pre sólové kariéry Rytmusa aj Ega.",
+  disco:[["Tri špinavé mená",2003,"EP"],["E.R.A.",2004,"album"],["Bozk na rozlúčku",2007,"album"],["Navždy",2013,"album"],["Real Newz",2019,"album"],["KF ako Rolls",2021,"album"]],
+  collabs:["Rytmus","Ego","Dalyb","Samey","Sima"],upWhen:"posledné roky",up:"KF ako Rolls (2021) zostáva zatiaľ posledným spoločným albumom; členovia sa naplno venujú sólu."},
+ {id:"rytmus",name:"Rytmus",real:"Patrik Vrbovský (*1977)",gen:"legenda",type:"sólo",city:"Piešťany",lat:48.59,lon:17.83,since:1992,genres:["old school","pop rap"],producer:"DJ Wich",
+  bio:"Ikona a komerčne najúspešnejší slovenský raper svojej generácie. Rómskeho pôvodu, vyrastal v Piešťanoch, spoluzakladateľ Kontrafaktu, TV osobnosť.",
+  disco:[["Bengoro",2006,"album"],["Kral",2009,"album"],["Fenomén",2011,"album"],["Jediný čo hreší",2012,"album"],["Krstný otec",2016,"album"],["Bengoro II",2023,"album"]],
+  collabs:["Ego","Kontrafakt","Tina","Laris Diam","Pil C"],upWhen:"2025–2026",up:"Singly Černej tracksuit (2025) a Moj krásny Kraj (2026), projekt Roots s Laris Diam. Súkromne manžel moderátorky Jasminy Alagič."},
+ {id:"ego",name:"Ego",real:"Michal Straka",gen:"legenda",type:"sólo",city:"Trnava",lat:48.38,lon:17.59,since:2001,genres:["pop rap","old school"],producer:"—",
+  bio:"Druhá polovica Kontrafaktu a samostatne jedna z najvýraznejších postáv žánru. Pred Kontrafaktom pôsobil v skupine Prízrak s DJ Anysom.",
+  disco:[["Žijeme len raz (singel)",2012,"singel"],["Precedens",2017,"album"],["Egotron",2020,"album"]],
+  collabs:["Rytmus","Kontrafakt","Sima","Tina","Sakito"],upWhen:"január 2026",up:"Po rokoch ticha oznámil návrat k sólovej tvorbe a novú kapitolu kariéry."},
+ {id:"separ",name:"Separ",real:"Michael Kmeť",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.15,lon:17.11,since:2008,genres:["trap","rap"],producer:"Mjay Beatz · SpecialBeatz",
+  bio:"Aktuálne najpočúvanejší slovenský raper na Spotify (cez 800-tis. mesačných poslucháčov). Frontman skupiny DMS a šéf labelu Donmays. Z bratislavskej Dúbravky.",
+  disco:[["Buldozér",2012,"album"],["Pirát",2014,"album"],["Pancier",2017,"album"],["OG",2020,"album"],["Flowdemort",2023,"album"],["Neviem",2025,"album"]],
+  collabs:["DMS","Dame","Pil C","Luca Brassi10x","Kali","Sima","Nerieš"],upWhen:"10. 10. 2025",up:"Najväčší koncert kariéry na Národnom futbalovom štadióne Tehelné pole; hosťovali Pil C, Luca Brassi, Kali aj Nerieš."},
+ {id:"dms",name:"DMS",real:"Dame · Separ · Smart",gen:"spicka",type:"skupina",city:"Bratislava",lat:48.18,lon:17.05,since:2008,genres:["rap"],producer:"Smart",
+  bio:"Bratislavská zostava reprezentujúca Dúbravku. Iniciálky členov: D – Dame, M – (Monsignor) Separ, S – Smart (producent), plus MiniMo.",
+  disco:[["Teraz už naozaj",2008,"album"],["Čo sa stalo?!",2011,"album"],["MMXV",2015,"album"],["Prepáčte",2018,"album"],["MDMS",2019,"album"]],
+  collabs:["Separ","Dame","Kali"],upWhen:"2025–2026",up:"Naďalej aktívne koncertujú, často po boku Separovej sólovej show."},
+ {id:"kali",name:"Kali",real:"Koloman Magyary (*1982)",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.10,lon:17.11,since:2008,genres:["rap","pop rap"],producer:"Peter Pann",
+  bio:"Raper z bratislavskej Petržalky. Dlhoročná spolupráca s producentom Petrom Pannom dala vznik mnohým rádiovým hitom.",
+  disco:[["Pod maskou je pravda",2010,"album"],["Načo čakať",2010,"album"],["Koniec je nový začiatok",2011,"album"],["Zlý príklad",2014,"album"],["Dezert",2016,"2× album"]],
+  collabs:["Peter Pann","Momo","Separ","Sima","Ego"],upWhen:"aktuálne",up:"Patrí k najvyťaženejším koncertným menám a stáliciam rebríčkov."},
+ {id:"majkspirit",name:"Majk Spirit",real:"Michal Dušička (*1984)",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.10,lon:17.10,since:2007,genres:["conscious rap","pop rap"],producer:"Billy Hollywood · Grimaso",
+  bio:"Pôvodne člen dua/skupiny H16 (ako Dilema) z petržalskej Hálovej 16. Neskôr sólista s pozitívnym, „uvedomelým\" rapom.",
+  disco:[["Nový človek",2011,"album"],["Y",2013,"album"]],
+  collabs:["H16","Čistychov","Rytmus","Ego","Vec"],upWhen:"aktuálne",up:"Stále koncertne aktívny, pravidelný hosť veľkých hip-hopových festivalov."},
+ {id:"pilc",name:"Pil C",real:"label Comebackgang",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.16,lon:17.13,since:2012,genres:["trap","drill"],producer:"Mjay Beatz",
+  bio:"Jedno z najsilnejších mien modernej trapovej vlny a šéf labelu Comebackgang, cez ktorý prešli aj Calin či Viktor Sheen.",
+  disco:[["2086",2019,"album"],["Odsúdení na úspech",2021,"album"],["Vojna (s Luca Brassi10x)",2024,"album"],["Brat (s Luca Brassi10x)",2025,"album"]],
+  collabs:["Luca Brassi10x","Separ","Rytmus","Ego","Nerieš"],upWhen:"2025",up:"S Luca Brassi10x nadviazali na úspešnú Vojnu (2024) ďalším spoločným albumom Brat (2025)."},
+ {id:"lucabrassi",name:"Luca Brassi10x",real:"—",gen:"nova",type:"sólo",city:"Bratislava",lat:48.14,lon:17.12,since:2022,genres:["trap","drill"],producer:"Mjay Beatz · SpecialBeatz",
+  bio:"Z ničoho nič sa vypracoval na jedno z najväčších mien scény. Charakteristický prejav a adliby, rapuje aj po srbsky.",
+  disco:[["Ghetto Maradona",2022,"album"],["Ghettoven",2024,"album"],["Vojna (s Pil C)",2024,"album"],["Brat (s Pil C)",2025,"album"]],
+  collabs:["Pil C","Separ"],upWhen:"posledné mesiace",up:"Zmenil životosprávu — schudol a verejne skončil s gamblingom."},
+ {id:"sima",name:"Sima",real:"Simona Hégerová (*1996)",gen:"spicka",type:"sólo",city:"Trnava",lat:48.38,lon:17.59,since:2015,genres:["rap","pop"],producer:"—",
+  bio:"Najpočúvanejšia žena scény (~381-tis. mes. poslucháčov). O sebe hovorí ako o „rapujúcej speváčke\". Na scénu ju uviedol Ego cez projekt Podzemgang.",
+  disco:[["Podla seba",2018,"album"],["hity Spolu / Pod vodou / Femina",2018,"singly"],["Sorry",2025,"singel"]],
+  collabs:["Ego","Separ","Kali","Kontrafakt","Nerieš","SIMILIVINLIFE"],upWhen:"2025",up:"Vypredala futbalový štadión Antona Malatinského v Trnave — doteraz najväčší koncert kariéry."},
+ {id:"gleb",name:"Gleb",real:"—",gen:"nova",type:"sólo",city:"Bratislava",lat:48.16,lon:17.16,since:2013,genres:["trap","melodic rap"],producer:"Komander",
+  bio:"Z ružinovského parku sa vypracoval na vrchol bez kompromisov. Technicky silný MC s dvorným producentom Komanderom a citom na hity.",
+  disco:[["Stanica Zoo",2013,"mixtape"],["Stanica Zoo 2",2014,"mixtape"],["Big Boy FM",2022,"album"],["PODOKNAMI (so Sameyom)",2025,"album"]],
+  collabs:["Samey","Delik","Luca Brassi10x","Sima"],upWhen:"2025",up:"So Sameyom vydal spoločný projekt PODOKNAMI; obaja v špičkovej rapovej forme."},
+ {id:"saul",name:"Saul",real:"—",gen:"nova",type:"sólo",city:"Bratislava",lat:48.13,lon:17.18,since:2019,genres:["trap"],producer:"—",
+  bio:"Rastúce meno novej generácie s vlastnou koncertnou základňou a výraznou vizuálnou stránkou.",
+  disco:[["singly a EP novej vlny",2023,"výber"]],
+  collabs:["Gleb","SIMILIVINLIFE"],upWhen:"2025",up:"Najväčší koncert kariéry s unikátnym pódiom v bratislavskej Peugeot aréne."},
+ {id:"momo",name:"Momo",real:"Roman Grigely (*1988)",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.11,lon:17.10,since:2008,genres:["rap","street rap"],producer:"—",
+  bio:"Z Petržalky, pôvodne ako eMO2 a člen skupiny XIV (Štrnásť). Debut mal agresívny, uličný tón; postupne sa štýl zjemnil.",
+  disco:[["Nepatrím medzi…",2008,"album"],["Stratená rovnováha",2011,"album"],["Za očami",2013,"album"],["Milovaný",2026,"album"]],
+  collabs:["Kali","Nerieš"],upWhen:"máj 2026",up:"Vydal náboženský album Milovaný — netradičný obrat k téme viery."},
+ {id:"neries",name:"Nerieš",real:"M. Straka · M. „Gabryell\" Gábriš",gen:"nova",type:"skupina",city:"Bratislava",lat:48.17,lon:17.10,since:2016,genres:["rap","alternatívny rap"],producer:"—",
+  bio:"Dvojica obľúbená pre ľahkosť, atmosféru a experiment s rôznymi typmi produkcie (od techna po deep house).",
+  disco:[["Minimal",2016,"album"],["HELLO",2024,"album"]],
+  collabs:["Pil C","Separ","Sima","13K"],upWhen:"2025",up:"Tvrdý spoločný collab Nerieš × 13K patril k diskutovaným kúskom roka."},
+ {id:"13k",name:"13K",real:"Šmolki · Big Draco · BigSip",gen:"nova",type:"skupina",city:"Bratislava",lat:48.15,lon:17.08,since:2020,genres:["drill","trap"],producer:"BigSip",
+  bio:"Surová odnož scény — drill a tvrdý trap s trefnými prirovnaniami a humorom.",
+  disco:[["BA Connect (feat. Gleb)",2024,"singel"],["Soldiers",2025,"EP"]],
+  collabs:["Gleb","Nerieš"],upWhen:"2025",up:"Vydali EP Soldiers; collab s Nerieš zarezonoval naprieč scénou."},
+ {id:"samey",name:"Samey",real:"Samuel Sadiv",gen:"nova",type:"sólo",city:"Košice",lat:48.72,lon:21.26,since:2017,genres:["trap","melodic rap"],producer:"Dalyb",
+  bio:"Člen košickej Haha Crew. Pohybuje sa medzi melodickým trapom a rapom, objavil sa aj na Real Newz od Kontrafaktu.",
+  disco:[["Mama neviem kedy prídem domov",2017,"album"],["XYZ",2019,"album"],["Anarchia",2021,"album"],["Slzy ulíc",2023,"album"],["PODOKNAMI (s Glebom)",2025,"album"]],
+  collabs:["Gleb","Kontrafakt","Dalyb"],upWhen:"2025",up:"Spoločný album PODOKNAMI s Glebom potvrdil jeho miesto v špičke novej vlny."},
+ {id:"similivinlife",name:"SIMILIVINLIFE",real:"—",gen:"nova",type:"sólo",city:"Bratislava",lat:48.15,lon:17.14,since:2020,genres:["trap"],producer:"—",
+  bio:"Výrazné meno mladej trapovej generácie s vlastným zvukom a estetikou.",
+  disco:[["23:69",2025,"album"]],
+  collabs:["Sima","Gleb","Saul"],upWhen:"február 2025",up:"Vydal album 23:69; spoluúčasť na hite My dvaja so Simou."},
+ {id:"porscheboy",name:"Porsche Boy",real:"—",gen:"nova",type:"sólo",city:"Košice",lat:48.72,lon:21.26,since:2020,genres:["drill","trap"],producer:"—",
+  bio:"Reprezentant východniarskeho zvuku (East Side Sound) — surovejšia drillová poloha.",
+  disco:[["EAST SIDE SOUND 2 (s WENom)",2025,"album"]],
+  collabs:["WEN","Gleb","Saul"],upWhen:"2025",up:"S WENom vydali East Side Sound 2 — ďalšiu kapitolu východniarskeho drillu."},
+ {id:"wen",name:"WEN",real:"—",gen:"nova",type:"sólo",city:"Košice",lat:48.73,lon:21.24,since:2020,genres:["drill","rap"],producer:"—",
+  bio:"Súčasť východniarskej drillovej vlny, úzko spätý s Porsche Boyom.",
+  disco:[["EAST SIDE SOUND 2 (s Porsche Boyom)",2025,"album"]],
+  collabs:["Porsche Boy"],upWhen:"2025",up:"Spoluautor albumu East Side Sound 2."},
+ {id:"eriktresor",name:"Erik Tresor",real:"—",gen:"nova",type:"sólo",city:"Bratislava",lat:48.14,lon:17.15,since:2019,genres:["melodic rap","trap"],producer:"—",
+  bio:"Mladé meno scény, ktoré sa pravidelne objavuje v rebríčkoch noviniek.",
+  disco:[["singly a EP",2023,"výber"]],
+  collabs:["Gleb","Sima"],upWhen:"posledné mesiace",up:"Pravidelne vydáva nové tracky a buduje si poslucháčsku základňu."},
+ {id:"vec",name:"Vec",real:"—",gen:"legenda",type:"sólo",city:"Bratislava",lat:48.16,lon:17.12,since:2000,genres:["conscious rap","alternatívny rap"],producer:"Vec (sám)",
+  bio:"Rešpektovaný predstaviteľ textovo prepracovanej polohy slovenského rapu a zároveň DJ/producent. Debut Dobré ráno získal Aurela.",
+  disco:[["Sub beats mixx",2000,"mixtape"],["Dobré ráno",2005,"album"]],
+  collabs:["Moja Reč","Majk Spirit","Čistychov"],upWhen:"dlhodobo",up:"Klasik scény, ktorého tvorba ovplyvnila celú generáciu textárov."},
+ {id:"mojarec",name:"Moja Reč",real:"Delik · Supa",gen:"legenda",type:"skupina",city:"Bratislava",lat:48.15,lon:17.12,since:2005,genres:["old school","boom bap"],producer:"Jozef Engerer",
+  bio:"Skupina spojená so surovým, úprimným rapom 2000s a 2010s. Rapujúce časti tvoria Delik a Supa.",
+  disco:[["S/M show",2006,"album"],["Dual Shock",2009,"2CD album"],["Dobrí chlapci 3",2011,"album"],["Offline",2016,"album"]],
+  collabs:["Vec","Strapo","Delik","H16"],upWhen:"klasika",up:"Súčasť základov, na ktorých stojí dnešná scéna."},
+ {id:"h16",name:"H16",real:"Otecko · Majk Spirit · Cigo",gen:"legenda",type:"skupina",city:"Bratislava",lat:48.10,lon:17.11,since:2002,genres:["old school"],producer:"Grimaso · Billy Hollywood",
+  bio:"Vplyvná stará škola z petržalskej Hálovej 16. Debut Kvalitný materiál získal platinu; z H16 vzišla sólová kariéra Majka Spirita.",
+  disco:[["Kvalitný materiál",2006,"album"],["Čísla nepustia",2008,"album"],["Antivirus",2009,"album"]],
+  collabs:["Majk Spirit","Vec","Moja Reč","Rytmus"],upWhen:"klasika",up:"Patrí k pilierom slovenského old schoolu."},
+ {id:"cistychov",name:"Čistychov",real:"—",gen:"legenda",type:"sólo",city:"Bratislava",lat:48.17,lon:17.14,since:2002,genres:["old school"],producer:"—",
+  bio:"Veterán scény a častý hosť na projektoch starej školy aj mainstreamu.",
+  disco:[["sólové a skupinové projekty",2006,"výber"]],
+  collabs:["Majk Spirit","Vec","Rytmus"],upWhen:"dlhodobo",up:"Rešpektované meno staršej generácie."},
+ {id:"strapo",name:"Strapo",real:"—",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.16,lon:17.09,since:2006,genres:["rap","old school"],producer:"—",
+  bio:"Raper s pevným miestom medzi staršou a strednou generáciou, časté featy naprieč scénou.",
+  disco:[["albumy a singly",2010,"výber"]],
+  collabs:["Moja Reč","Kali","Separ"],upWhen:"aktuálne",up:"Naďalej súčasť koncertnej scény a spoluprác."},
+ {id:"dame",name:"Dame",real:"—",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.18,lon:17.05,since:2008,genres:["rap"],producer:"Smart",
+  bio:"Zakladajúci člen DMS, blízky spolupracovník Separa od úplných začiatkov v Dúbravke.",
+  disco:[["tvorba v rámci DMS",2008,"výber"]],
+  collabs:["Separ","DMS"],upWhen:"aktuálne",up:"Aktívny najmä v rámci DMS a spoločných projektov."},
+ {id:"dalyb",name:"Dalyb",real:"—",gen:"nova",type:"sólo",city:"Košice",lat:48.71,lon:21.28,since:2016,genres:["trap","autotune"],producer:"Dalyb (sám)",
+  bio:"Priekopník autotunového trapu na Slovensku, člen košickej Haha Crew, hosť na Real Newz od Kontrafaktu.",
+  disco:[["albumy a singly novej vlny",2018,"výber"]],
+  collabs:["Kontrafakt","Samey"],upWhen:"aktuálne",up:"Naďalej vydáva a teasuje nové projekty."},
+ {id:"delik",name:"Delik",real:"—",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.15,lon:17.13,since:2005,genres:["rap","boom bap"],producer:"—",
+  bio:"Rapujúca časť Mojej Reči a samostatne aktívny raper strednej generácie, často v tandeme s Refewom.",
+  disco:[["albumy a EP",2012,"výber"]],
+  collabs:["Refew","Moja Reč","Gleb"],upWhen:"aktuálne",up:"Pokračuje v tvorbe a spoluprácach."},
+ {id:"refew",name:"Refew",real:"—",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.14,lon:17.07,since:2008,genres:["rap"],producer:"—",
+  bio:"Spolupracovník Delika a ďalších mien strednej generácie.",
+  disco:[["spoločné a sólové projekty",2012,"výber"]],
+  collabs:["Delik","Kali"],upWhen:"aktuálne",up:"Naďalej aktívny na scéne."}
+];
+
+const PRODUCERS=[
+ ["Mjay Beatz","Separ, Pil C, Luca Brassi10x — jeden z najvyťaženejších producentov dnešnej špičky."],
+ ["Peter Pann","Kali — dvorný producent, spoluautor väčšiny jeho rádiových hitov."],
+ ["DJ Wich","Rytmus a stará škola — legendárny producent a DJ česko-slovenského rapu."],
+ ["Komander","Gleb — dvorný producent jeho zvuku."],
+ ["SpecialBeatz","Separ, Luca Brassi10x — moderný trapový zvuk."],
+ ["Grimaso / Billy Hollywood","H16 a Majk Spirit — zvuk petržalskej starej školy."],
+ ["DJ Anys","Kontrafakt — DJ a producent tria."],
+ ["Smart","DMS — producentská zložka skupiny."]
+];
+
+/* GRID */
+const grid=document.getElementById('grid'),emptyEl=document.getElementById('empty'),qEl=document.getElementById('q');
+let activeGen=null;
+const rankOf=i=>String(i+1).padStart(2,'0');
+function cardHTML(r,i){return `<article class="card" data-gen="${r.gen}" data-id="${r.id}" tabindex="0">
+ <span class="since">${r.since}</span><span class="rank">#${rankOf(i)} · ${r.type}</span>
+ <h3 class="nm">${r.name}</h3><div class="real">${r.real} · ${r.city}</div>
+ <div class="meta">${r.genres.map(g=>`<span class="tag">${g}</span>`).join('')}</div></article>`;}
+function render(){const q=qEl.value.trim().toLowerCase();let shown=0;
+ grid.innerHTML=RAPPERS.map((r,i)=>{const hay=(r.name+' '+r.real+' '+r.city+' '+r.genres.join(' ')+' '+GEN[r.gen].label).toLowerCase();
+  if((!activeGen||r.gen===activeGen)&&(!q||hay.includes(q))){shown++;return cardHTML(r,i);}return'';}).join('');
+ emptyEl.style.display=shown?'none':'block';bindCards();}
+function bindCards(){document.querySelectorAll('.card').forEach(c=>{
+ c.addEventListener('click',()=>openModal(c.dataset.id));
+ c.addEventListener('keydown',e=>{if(e.key==='Enter')openModal(c.dataset.id);});});}
+document.querySelectorAll('#genChips .chip').forEach(ch=>ch.addEventListener('click',()=>{
+ const g=ch.dataset.gen;
+ if(activeGen===g){activeGen=null;ch.setAttribute('aria-pressed','false');}
+ else{activeGen=g;document.querySelectorAll('#genChips .chip').forEach(x=>x.setAttribute('aria-pressed','false'));ch.setAttribute('aria-pressed','true');}
+ render();}));
+qEl.addEventListener('input',render);
+
+/* MODAL */
+const modalBg=document.getElementById('modalBg'),modal=document.getElementById('modal'),modalBody=document.getElementById('modalBody');
+const byId=id=>RAPPERS.find(r=>r.id===id),idxOf=id=>RAPPERS.findIndex(r=>r.id===id);
+function openModal(id){const r=byId(id);if(!r)return;modal.dataset.gen=r.gen;
+ const disco=r.disco.map(d=>`<li><span class="yr">${d[1]}</span><span class="tt">${d[0]}</span><span class="ty">${d[2]}</span></li>`).join('');
+ const collabs=r.collabs.map(n=>{const t=RAPPERS.find(x=>x.name===n);
+  return t?`<span class="collab" data-go="${t.id}">${n}</span>`:`<span class="collab" style="opacity:.55;cursor:default">${n}</span>`;}).join('');
+ modalBody.innerHTML=`<div class="m-rank">#${rankOf(idxOf(id))} · ${GEN[r.gen].label} · ${r.type}</div>
+  <h3 class="m-nm">${r.name}</h3><div class="m-real">${r.real} · ${r.city} · na scéne od ${r.since}</div>
+  <div class="m-meta">${r.genres.map(g=>`<span class="tag">${g}</span>`).join('')}</div>
+  <p class="m-bio">${r.bio}</p>
+  <div class="kv"><span>Dvorný producent:</span> <b>${r.producer&&r.producer!=='—'?r.producer:'neuvedený'}</b></div>
+  <div class="block"><h4>Diskografia (výber)</h4><ul class="disco">${disco}</ul></div>
+  <div class="block"><h4>Významné spolupráce</h4><div class="collabs">${collabs}</div></div>
+  <div class="block"><h4>Posledné novinky</h4><div class="update"><span class="when">${r.upWhen}</span>${r.up}</div></div>`;
+ modalBg.classList.add('open');document.body.style.overflow='hidden';
+ modalBody.querySelectorAll('.collab[data-go]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.go)));}
+function closeModal(){modalBg.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('closeM').addEventListener('click',closeModal);
+modalBg.addEventListener('click',e=>{if(e.target===modalBg)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* MAP — real SK silhouette + lon/lat projection */
+const LON0=16.83,LON1=22.57,LAT0=47.73,LAT1=49.61;
+function buildMap(){
+ const svg=document.getElementById('skmap'),path=document.getElementById('skPath'),layer=document.getElementById('cityLayer');
+ let lb;try{lb=path.getBBox();}catch(e){return;}
+ if(!lb||!lb.width){return;}
+ // transform g: x'=0.1*x ; y'=1024-0.1*y
+ const xA=0.1*lb.x,xB=0.1*(lb.x+lb.width),yA=1024-0.1*(lb.y+lb.height),yB=1024-0.1*lb.y;
+ const T={x:Math.min(xA,xB),y:Math.min(yA,yB),w:Math.abs(xB-xA),h:Math.abs(yB-yA)};
+ svg.setAttribute('viewBox',`${T.x-6} ${T.y-6} ${T.w+12} ${T.h+12}`);
+ const proj=(lon,lat)=>[T.x+(lon-LON0)/(LON1-LON0)*T.w, T.y+(LAT1-lat)/(LAT1-LAT0)*T.h];
+ const cities={};
+ RAPPERS.forEach(r=>{(cities[r.city]=cities[r.city]||{lat:r.lat,lon:r.lon,list:[]}).list.push(r.name);});
+ const NS='http://www.w3.org/2000/svg';
+ Object.entries(cities).forEach(([c,o])=>{
+  const [x,y]=proj(o.lon,o.lat);
+  const g=document.createElementNS(NS,'g');g.setAttribute('class','cityG');
+  const circ=document.createElementNS(NS,'circle');circ.setAttribute('cx',x);circ.setAttribute('cy',y);
+  circ.setAttribute('r',5+Math.min(o.list.length,8));circ.setAttribute('class','cdot');
+  const cnt=document.createElementNS(NS,'text');cnt.setAttribute('x',x);cnt.setAttribute('y',y-14);
+  cnt.setAttribute('text-anchor','middle');cnt.setAttribute('class','ccount');cnt.textContent=o.list.length;
+  const lab=document.createElementNS(NS,'text');lab.setAttribute('x',x);lab.setAttribute('y',y+26);
+  lab.setAttribute('text-anchor','middle');lab.setAttribute('class','clabel');lab.textContent=c;
+  const tip=document.createElementNS(NS,'title');tip.textContent=c+': '+o.list.join(', ');
+  g.appendChild(circ);g.appendChild(cnt);g.appendChild(lab);g.appendChild(tip);layer.appendChild(g);
+ });
+}
+
+/* NETWORK */
+const canvas=document.getElementById('net'),ctx=canvas.getContext('2d');
+let W,H,DPR,raf,dragNode=null,hoverNode=null;
+const nodes=RAPPERS.map(r=>({id:r.id,name:r.name,gen:r.gen,deg:0,x:0,y:0,vx:0,vy:0}));
+const nmap={};nodes.forEach(n=>nmap[n.id]=n);
+const nameToId={};RAPPERS.forEach(r=>nameToId[r.name]=r.id);
+const edges=[],seen=new Set();
+RAPPERS.forEach(r=>r.collabs.forEach(cn=>{const t=nameToId[cn];if(!t||t===r.id)return;
+ const k=[r.id,t].sort().join('|');if(seen.has(k))return;seen.add(k);edges.push([r.id,t]);nmap[r.id].deg++;nmap[t].deg++;}));
+function resize(){DPR=window.devicePixelRatio||1;W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*DPR;canvas.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+function seed(){nodes.forEach((n,i)=>{const a=i/nodes.length*Math.PI*2;n.x=W/2+Math.cos(a)*Math.min(W,H)*0.33+(Math.random()-.5)*40;n.y=H/2+Math.sin(a)*Math.min(W,H)*0.33+(Math.random()-.5)*40;n.vx=0;n.vy=0;});}
+function tick(){
+ for(let i=0;i<nodes.length;i++){const a=nodes[i];for(let j=i+1;j<nodes.length;j++){const b=nodes[j];
+  let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+0.01,f=2600/d2,d=Math.sqrt(d2);dx/=d;dy/=d;
+  a.vx+=dx*f;a.vy+=dy*f;b.vx-=dx*f;b.vy-=dy*f;}}
+ edges.forEach(([s,t])=>{const a=nmap[s],b=nmap[t];let dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)+.01,f=(d-110)*0.012;dx/=d;dy/=d;
+  a.vx+=dx*f;a.vy+=dy*f;b.vx-=dx*f;b.vy-=dy*f;});
+ nodes.forEach(n=>{n.vx+=(W/2-n.x)*0.0012;n.vy+=(H/2-n.y)*0.0012;n.vx*=0.86;n.vy*=0.86;
+  if(n!==dragNode){n.x+=n.vx;n.y+=n.vy;}n.x=Math.max(24,Math.min(W-24,n.x));n.y=Math.max(24,Math.min(H-24,n.y));});
+}
+const radius=n=>6+Math.min(n.deg,8)*1.7;
+function draw(){ctx.clearRect(0,0,W,H);
+ edges.forEach(([s,t])=>{const a=nmap[s],b=nmap[t],hot=hoverNode&&(hoverNode.id===s||hoverNode.id===t);
+  ctx.strokeStyle=hot?'rgba(255,212,0,.55)':'rgba(232,228,220,.10)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();});
+ nodes.forEach(n=>{const r=radius(n);ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fillStyle=GEN[n.gen].color;ctx.fill();
+  if(hoverNode===n){ctx.lineWidth=2;ctx.strokeStyle='#fff';ctx.stroke();}
+  if(n.deg>=4||hoverNode===n){ctx.fillStyle='#E8E4DC';ctx.font='700 11px "Space Mono",monospace';ctx.textAlign='center';ctx.fillText(n.name,n.x,n.y-r-6);}});}
+function loop(){tick();draw();raf=requestAnimationFrame(loop);}
+function nodeAt(mx,my){for(let i=nodes.length-1;i>=0;i--){const n=nodes[i],r=radius(n)+4;if((mx-n.x)**2+(my-n.y)**2<=r*r)return n;}return null;}
+function pos(e){const rect=canvas.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-rect.left,y:t.clientY-rect.top};}
+canvas.addEventListener('mousemove',e=>{const p=pos(e);hoverNode=dragNode||nodeAt(p.x,p.y);canvas.style.cursor=hoverNode?'pointer':'grab';if(dragNode){dragNode.x=p.x;dragNode.y=p.y;dragNode.vx=0;dragNode.vy=0;}});
+canvas.addEventListener('mousedown',e=>{const p=pos(e);dragNode=nodeAt(p.x,p.y);});
+window.addEventListener('mouseup',()=>{dragNode=null;});
+canvas.addEventListener('click',e=>{const p=pos(e);const n=nodeAt(p.x,p.y);if(n)openModal(n.id);});
+canvas.addEventListener('touchstart',e=>{const p=pos(e);dragNode=nodeAt(p.x,p.y);},{passive:true});
+canvas.addEventListener('touchmove',e=>{if(dragNode){const p=pos(e);dragNode.x=p.x;dragNode.y=p.y;dragNode.vx=0;dragNode.vy=0;e.preventDefault();}},{passive:false});
+canvas.addEventListener('touchend',e=>{const cp=e.changedTouches&&e.changedTouches[0];if(cp){const rect=canvas.getBoundingClientRect();const n=nodeAt(cp.clientX-rect.left,cp.clientY-rect.top);if(n&&dragNode===n)openModal(n.id);}dragNode=null;});
+
+/* PRODUCERS */
+document.getElementById('prods').innerHTML=PRODUCERS.map(p=>`<div class="prod"><div class="pn">${p[0]}</div><div class="pr">${p[1]}</div></div>`).join('');
+
+/* TIMELINE */
+const MILESTONES=[
+ [2001,"Vzniká <b>Kontrafakt</b> (Rytmus, Ego, DJ Anys) — budúci motor mainstreamového rapu."],
+ [2004,"Debut <b>Kontrafakt — E.R.A.</b> sa zaraďuje medzi najpredávanejšie tituly na Slovensku."],
+ [2005,"<b>Vec — Dobré ráno</b> získava Aurela; intelektuálnejšia poloha rapu má svoj míľnik."],
+ [2006,"<b>H16 — Kvalitný materiál</b> (platina) a <b>Rytmus — Bengoro</b>: stará škola aj sólová špička."],
+ [2008,"Rozbieha sa <b>DMS</b> z bratislavskej Dúbravky — neskorší domov Separa."],
+ [2012,"<b>Ego — Žijeme len raz</b> a <b>Separ — Buldozér</b>: štart silných sólo dráh."],
+ [2015,"<b>Sima</b> vstupuje na scénu cez projekt Podzemgang — neskôr najpočúvanejšia žena žánru."],
+ [2019,"<b>Kontrafakt — Real Newz</b> prepája staré mená s novou školou (Dalyb, Samey, Viktor Sheen)."],
+ [2022,"<b>Luca Brassi10x — Ghetto Maradona</b>: nástup novej generácie do širokého povedomia."],
+ [2024,"<b>Pil C × Luca Brassi10x — Vojna</b> ovláda leto; nová vlna sa stáva mainstreamom."],
+ [2025,"<b>Separ</b> odohrá najväčší koncert kariéry na <b>Tehelnom poli</b>; Sima vypredáva štadión v Trnave."],
+ [2026,"<b>Ego</b> sa vracia k sólu, <b>Rytmus</b> chystá projekt Roots, <b>Momo</b> vydáva album Milovaný."]
+];
+document.getElementById('tl').innerHTML=MILESTONES.map(m=>`<div class="tl-item"><div class="tl-yr">${m[0]}</div><div class="tl-tx">${m[1]}</div></div>`).join('');
+
+/* GLOSSARY */
+const SLANG=[
+ ["Feat","Hosťovanie jedného interpreta na skladbe iného."],
+ ["Diss","Skladba alebo verš mierený proti konkrétnemu rivalovi."],
+ ["Beef","Verejný spor dvoch interpretov, často cez vzájomné dissy."],
+ ["Bar","Jeden verš / riadok textu; „tučné bary\" = silné texty."],
+ ["Flow","Spôsob, akým raper kladie slová do rytmu."],
+ ["Adlib","Krátke výkriky v pozadí (yeah, skrr) — poznávacie znamenie interpreta."],
+ ["Banger","Mimoriadne chytľavá, údená skladba."],
+ ["Beat","Inštrumentálny podklad od producenta."],
+ ["Cypher","Spoločné freestylovanie viacerých raperov za sebou."],
+ ["Drill","Tvrdší, temnejší subžáner s charakteristickými hi-hatmi a basmi."],
+ ["Trap","Dominantný moderný zvuk — 808 basy, rýchle hi-haty, autotune."],
+ ["Collab","Spoločný projekt či album dvoch a viac interpretov."],
+ ["Label","Vydavateľstvo za hudbou (napr. Donmays, Comebackgang)."],
+ ["Old school","Staršia škola rapu — surovší boom bap zvuk."],
+ ["Mixtape","Voľnejší, často bezplatný projekt mimo „veľkého\" albumu."],
+ ["Okoňovať","Slangovo: oklamať/podviesť (časté v textoch scény)."]
+];
+document.getElementById('gloss').innerHTML=SLANG.map(s=>`<div class="term"><div class="t">${s[0]}</div><div class="d">${s[1]}</div></div>`).join('');
+
+/* TIER LIST */
+const ALBUMS=[
+ ["k1","E.R.A.","Kontrafakt",2004,"legenda"],["k2","Bozk na rozlúčku","Kontrafakt",2007,"legenda"],["k3","Real Newz","Kontrafakt",2019,"legenda"],
+ ["ry1","Bengoro","Rytmus",2006,"legenda"],["ry2","Kral","Rytmus",2009,"legenda"],["ry3","Bengoro II","Rytmus",2023,"legenda"],
+ ["eg1","Precedens","Ego",2017,"legenda"],["eg2","Egotron","Ego",2020,"legenda"],
+ ["se1","Pancier","Separ",2017,"spicka"],["se2","OG","Separ",2020,"spicka"],["se3","Flowdemort","Separ",2023,"spicka"],["se4","Neviem","Separ",2025,"spicka"],
+ ["ka1","Dezert","Kali",2016,"spicka"],["mj1","Nový človek","Majk Spirit",2011,"spicka"],["mj2","Y","Majk Spirit",2013,"spicka"],
+ ["pc1","Odsúdení na úspech","Pil C",2021,"spicka"],["pl1","Vojna","Pil C × Luca Brassi10x",2024,"nova"],["pl2","Brat","Pil C × Luca Brassi10x",2025,"nova"],
+ ["lb1","Ghettoven","Luca Brassi10x",2024,"nova"],["si1","Podla seba","Sima",2018,"spicka"],
+ ["gl1","Big Boy FM","Gleb",2022,"nova"],["gs1","PODOKNAMI","Gleb & Samey",2025,"nova"],
+ ["ne1","Minimal","Nerieš",2016,"nova"],["ne2","HELLO","Nerieš",2024,"nova"],
+ ["mo1","Milovaný","Momo",2026,"spicka"],["ve1","Dobré ráno","Vec",2005,"legenda"],["h1","Kvalitný materiál","H16",2006,"legenda"],
+ ["sa1","Slzy ulíc","Samey",2023,"nova"]
+];
+const albMap={};ALBUMS.forEach(a=>albMap[a[0]]=a);
+let tierState={};ALBUMS.forEach(a=>tierState[a[0]]='pool');
+let selectedAlb=null;
+function albTile(a){return `<div class="alb" draggable="true" data-id="${a[0]}" data-gen="${a[4]}">
+ <div class="at">${a[1]}</div><div class="aa">${a[2]} · ${a[3]}</div></div>`;}
+function renderTiers(){
+ document.querySelectorAll('.tier-drop,#pool').forEach(z=>{
+  const t=z.dataset.tier;[...z.querySelectorAll('.alb')].forEach(e=>e.remove());
+  ALBUMS.filter(a=>tierState[a[0]]===t).forEach(a=>z.insertAdjacentHTML('beforeend',albTile(a)));});
+ document.querySelectorAll('.alb').forEach(el=>{
+  el.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain',el.dataset.id));
+  el.addEventListener('click',()=>{
+   if(selectedAlb===el.dataset.id){el.classList.remove('sel');selectedAlb=null;}
+   else{document.querySelectorAll('.alb.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');selectedAlb=el.dataset.id;}
+  });});
+}
+function assign(id,tier){if(!id||!(id in tierState))return;tierState[id]=tier;selectedAlb=null;renderTiers();}
+document.querySelectorAll('.tier-drop,#pool').forEach(z=>{
+ z.addEventListener('dragover',e=>e.preventDefault());
+ z.addEventListener('drop',e=>{e.preventDefault();assign(e.dataTransfer.getData('text/plain'),z.dataset.tier);});
+ z.addEventListener('click',e=>{if(selectedAlb&&!e.target.closest('.alb'))assign(selectedAlb,z.dataset.tier);});
+});
+document.querySelectorAll('.tier-row').forEach(row=>row.addEventListener('click',e=>{
+ if(selectedAlb&&!e.target.closest('.alb'))assign(selectedAlb,row.dataset.tier);}));
+
+const toast=document.getElementById('toast');
+function showToast(m){toast.textContent=m;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800);}
+function encodeState(){const o={};Object.entries(tierState).forEach(([k,v])=>{if(v!=='pool')o[k]=v;});return btoa(unescape(encodeURIComponent(JSON.stringify(o))));}
+function decodeState(s){try{const o=JSON.parse(decodeURIComponent(escape(atob(s))));ALBUMS.forEach(a=>tierState[a[0]]='pool');Object.entries(o).forEach(([k,v])=>{if(k in tierState)tierState[k]=v;});return true;}catch(e){return false;}}
+document.getElementById('shareBtn').addEventListener('click',()=>{
+ const url=location.origin+location.pathname+'#tier='+encodeState();
+ navigator.clipboard?.writeText(url).then(()=>showToast('Link skopírovaný do schránky'),()=>showToast(url));
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{ALBUMS.forEach(a=>tierState[a[0]]='pool');renderTiers();showToast('Vyčistené');});
+document.getElementById('pngBtn').addEventListener('click',()=>{
+ if(typeof htmlToImage==='undefined'){showToast('Export nie je dostupný offline');return;}
+ htmlToImage.toPng(document.getElementById('tierBoard'),{backgroundColor:getComputedStyle(document.body).backgroundColor,pixelRatio:2})
+  .then(d=>{const a=document.createElement('a');a.download='tier-list-slovensky-rap.png';a.href=d;a.click();})
+  .catch(()=>showToast('Export zlyhal'));
+});
+if(location.hash.startsWith('#tier='))decodeState(location.hash.slice(6));
+
+/* THEME */
+const themeBtn=document.getElementById('themeBtn');
+themeBtn.addEventListener('click',()=>{
+ const on=document.body.getAttribute('data-theme')==='cyber';
+ if(on){document.body.removeAttribute('data-theme');themeBtn.textContent='◐ Cyberpunk';}
+ else{document.body.setAttribute('data-theme','cyber');themeBtn.textContent='◑ Street';}
+ draw();
+});
+
+/* INIT */
+render();renderTiers();
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function initNet(){resize();seed();cancelAnimationFrame(raf);if(reduce){for(let k=0;k<300;k++)tick();draw();}else loop();}
+window.addEventListener('resize',()=>{resize();if(reduce)draw();});
+window.addEventListener('load',()=>{buildMap();initNet();});
+setTimeout(()=>{try{buildMap();}catch(e){}},400);
+</script>
+</body>
+</html>
