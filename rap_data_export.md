@@ -1,0 +1,241 @@
+# Zoznam interpretov a albumov použitých na stránke
+
+Spolu **106** interpretov/skupín.
+
+## Legendy / old school
+- **Kontrafakt** — skupina, Piešťany, od 2001, producent: DJ Anys
+  - albumy: Tri špinavé mená (2003); E.R.A. (2004); Bozk na rozlúčku (2007); Navždy (2013); Real Newz (2019); KF ako Rolls (2021)
+  - spolupráce/členovia: Rytmus, Ego, Dalyb, Samey, Sima
+- **Rytmus** — Piešťany, od 1992, producent: DJ Wich
+  - albumy: Bengoro (2006); Kral (2009); Fenomén (2011); Jediný čo hreší (2012); Krstný otec (2016); Bengoro II (2023)
+  - spolupráce/členovia: Ego, Kontrafakt, Tina, Laris Diam, Pil C
+- **Ego** — Trnava, od 2001
+  - albumy: Žijeme len raz (singel) (2012); Precedens (2017); Egotron (2020)
+  - spolupráce/členovia: Rytmus, Kontrafakt, Sima, Tina, Sakito
+- **Vec** — Bratislava, od 2000, producent: Vec (sám)
+  - albumy: Sub beats mixx (2000); Dobré ráno (2005)
+  - spolupráce/členovia: Moja Reč, Majk Spirit, Čistychov
+- **Moja Reč** — skupina, Handlová, od 2004, producent: Jozef Engerer
+  - albumy: S/M show (2006); Dual Shock (2009); Dobrí chlapci 3 (2011); Offline (2016); Zasedoma (2020); Dobrí Chlapci 4 (2022)
+  - spolupráce/členovia: Vec, Strapo, Delik, H16
+- **H16** — skupina, Bratislava, od 2002, producent: Grimaso · Billy Hollywood
+  - albumy: Kvalitný materiál (2006); Čísla nepustia (2008); Antivirus (2009)
+  - spolupráce/členovia: Majk Spirit, Vec, Moja Reč, Rytmus
+- **Čistychov** — Bratislava, od 2002
+  - albumy: sólové a skupinové projekty (2006)
+  - spolupráce/členovia: Majk Spirit, Vec, Rytmus
+- **Miky Mora** — Bratislava, od 1997, producent: Peter Pann
+  - albumy: Moratón (2006); 20.08 (2008)
+  - spolupráce/členovia: Druhá Strana, Moloch Vlavo, Čistychov, Rytmus
+- **Druhá Strana** — skupina, Bratislava, od 1997
+  - albumy: projekty Druhej Strany (2004)
+  - spolupráce/členovia: Miky Mora, Moloch Vlavo, Čistychov
+- **Moloch Vlavo** — Bratislava, od 1997
+  - albumy: sólové a skupinové projekty (2008)
+  - spolupráce/členovia: Druhá Strana, Miky Mora
+- **Tono S.** — Bratislava, od 2006, producent: Beyuz
+  - albumy: Fičúringy (2015); Návraty (s Beyuzom) (2014)
+  - spolupráce/členovia: Gramo Rokkaz, Decko, Rebel
+- **Trosky** — skupina, Zlaté Moravce, od 1997, producent: Midi
+  - albumy: Trosky (1997)
+  - spolupráce/členovia: Vec
+- **Modré Hory** — skupina, Bratislava, od 2006
+  - albumy: Záblesky (Delik & Bene) (2010)
+  - spolupráce/členovia: Bene, Lyrik, Delik
+- **Názov Stavby** — skupina, Bratislava, od 2002, producent: DNA
+  - albumy: Reč naša (2002)
+  - spolupráce/členovia: DNA, Čistychov
+- **Gramo Rokkaz** — skupina, Bratislava, od 2007, producent: DJ Metys
+  - albumy: spoločné projekty a mixtapy (2010)
+  - spolupráce/členovia: Separ, Tono S., Decko
+- **DNA** — Bratislava, od 2002, producent: DNA (sám)
+  - albumy: Reč naša (Názov Stavby) (2002)
+  - spolupráce/členovia: Názov Stavby, Drvivá Menšina
+- **Boy Wonder** — Bratislava, od 2007, producent: Billy Hollywood
+  - albumy: projekty Turbo Boost (2010)
+  - spolupráce/členovia: Kali, Moja Reč
+- **Zverina** — Bratislava, od 2006
+  - albumy: albumy a featy (2010)
+  - spolupráce/členovia: Moja Reč, Vec, Čistychov
+- **A.M.O** — skupina, Bratislava
+  - spolupráce/členovia: Viktor Hazard, Moe, Opak
+- **Viktor Hazard** — Bratislava
+  - spolupráce/členovia: A.M.O
+- **Moe** — Bratislava
+  - spolupráce/členovia: A.M.O
+- **Opak** — Bratislava
+  - spolupráce/členovia: A.M.O
+- **Agresor Lotor**
+- **Drvivá Menšina** — skupina, Bratislava
+  - spolupráce/členovia: Bacil, DNA, Šegy 100
+- **L.Ú.Z.A.** — skupina, Bratislava
+  - spolupráce/členovia: Čistychov, Hajtkovič, Slipo
+- **JSS** — skupina
+  - spolupráce/členovia: A.D., Džuva, Lyrik H
+- **eLPe**
+- **Mišo Biely**
+- **Money G** — Piešťany
+- **Decko** — Bratislava
+  - spolupráce/členovia: Gramo Rokkaz
+- **Rebel** — Bratislava
+  - spolupráce/členovia: Gramo Rokkaz, Mater
+- **Danosť** — Bratislava
+  - spolupráce/členovia: Gramo Rokkaz
+- **Bene** — Bratislava
+  - spolupráce/členovia: Modré Hory
+- **Lyrik** — Bratislava
+  - spolupráce/členovia: Modré Hory
+- **Otecko** — Bratislava
+  - spolupráce/členovia: H16
+- **Cigo** — Bratislava
+  - spolupráce/členovia: H16
+- **DJ Anys** — Piešťany
+  - spolupráce/členovia: Kontrafakt
+- **Supa** — Handlová
+  - spolupráce/členovia: Moja Reč
+- **Stanica projekt** — skupina
+  - spolupráce/členovia: Jano Dice, Fako, Hlava
+- **SEdláci** — skupina
+  - spolupráce/členovia: Lúzer, ReSeT, T-Peg
+- **Prečo Ne?!** — skupina
+  - spolupráce/členovia: Edi eM, Holub
+- **Zlá Strava** — skupina
+  - spolupráce/členovia: Labrak, Osma
+- **Štrnásť (XIV)** — skupina, Bratislava
+  - spolupráce/členovia: Momo, Lektor, Suchý Pes
+- **Turbo Boost** — skupina, Bratislava
+  - spolupráce/členovia: Billy Hollywood, Boy Wonder
+- **Dramatikz** — skupina
+  - spolupráce/členovia: Radikal, Masif, Yaksha
+- **2H+** — skupina
+  - spolupráce/členovia: Suvereno, Vladis
+- **Suvereno**
+  - spolupráce/členovia: 2H+
+- **Hajtkovič** — Bratislava
+  - spolupráce/členovia: L.Ú.Z.A.
+- **Slipo** — Bratislava
+  - spolupráce/členovia: L.Ú.Z.A.
+- **Šegy 100** — Bratislava
+  - spolupráce/členovia: Drvivá Menšina
+- **Bacil** — Bratislava
+  - spolupráce/členovia: Drvivá Menšina
+
+## Špička
+- **Separ** — Bratislava, od 2008, producent: Mjay Beatz · SpecialBeatz
+  - albumy: Buldozér (2012); Pirát (2014); Pancier (2017); OG (2020); Flowdemort (2023); Neviem (2025)
+  - spolupráce/členovia: DMS, Dame, Pil C, Luca Brassi10x, Kali, Sima, Nerieš
+- **DMS** — skupina, Bratislava, od 2008, producent: Smart
+  - albumy: Teraz už naozaj (2008); Čo sa stalo?! (2011); MMXV (2015); Prepáčte (2018); MDMS (2019)
+  - spolupráce/členovia: Separ, Dame, Kali
+- **Kali** — Bratislava, od 2008, producent: Peter Pann
+  - albumy: Pod maskou je pravda (2010); Načo čakať (2010); Koniec je nový začiatok (2011); Zlý príklad (2014); Dezert (2016)
+  - spolupráce/členovia: Peter Pann, Momo, Separ, Sima, Ego
+- **Majk Spirit** — Bratislava, od 2007, producent: Billy Hollywood · Grimaso
+  - albumy: Nový človek (2011); Y (2013)
+  - spolupráce/členovia: H16, Čistychov, Rytmus, Ego, Vec
+- **Pil C** — Bratislava, od 2012, producent: Mjay Beatz
+  - albumy: 2086 (2019); Odsúdení na úspech (2021); Vojna (s Luca Brassi10x) (2024); Brat (s Luca Brassi10x) (2025)
+  - spolupráce/členovia: Luca Brassi10x, Separ, Rytmus, Ego, Nerieš
+- **Sima** — Trnava, od 2015
+  - albumy: Podla seba (2018); hity Spolu / Pod vodou / Femina (2018); Sorry (2025)
+  - spolupráce/členovia: Ego, Separ, Kali, Kontrafakt, Nerieš, SIMILIVINLIFE
+- **Momo** — Bratislava, od 2008
+  - albumy: Nepatrím medzi… (2008); Stratená rovnováha (2011); Za očami (2013); Milovaný (2026)
+  - spolupráce/členovia: Kali, Nerieš
+- **Strapo** — Bratislava, od 2006
+  - albumy: albumy a singly (2010)
+  - spolupráce/členovia: Moja Reč, Kali, Separ
+- **Dame** — Bratislava, od 2008, producent: Smart
+  - albumy: tvorba v rámci DMS (2008)
+  - spolupráce/členovia: Separ, DMS
+- **Delik** — Handlová, od 2004
+  - albumy: albumy a EP (2012)
+  - spolupráce/členovia: Refew, Moja Reč, Gleb
+- **Refew** — Bratislava, od 2008
+  - albumy: spoločné a sólové projekty (2012)
+  - spolupráce/členovia: Delik, Kali
+- **Alan Murin** — Bratislava, od 2019, producent: Alan Murin (sám)
+  - albumy: 15 23 / 23 10 / 19 98 (EP trilógia) (2019); TRUESELF (2022)
+  - spolupráce/členovia: Kali, Rytmus, Ego, Separ, Majk Spirit, Momo, Moja Reč
+- **Čis T**
+- **MiniMo** — Bratislava
+  - spolupráce/členovia: DMS
+- **Laris Diam**
+- **Lvcas Dope**
+- **Majself**
+- **ADiss**
+
+## Nová vlna
+- **Luca Brassi10x** — Bratislava, od 2022, producent: Mjay Beatz · SpecialBeatz
+  - albumy: Ghetto Maradona (2022); Ghettoven (2024); Vojna (s Pil C) (2024); Brat (s Pil C) (2025)
+  - spolupráce/členovia: Pil C, Separ
+- **Gleb** — Bratislava, od 2013, producent: Komander
+  - albumy: Stanica Zoo (2013); Stanica Zoo 2 (2014); Big Boy FM (2022); PODOKNAMI (so Sameyom) (2025)
+  - spolupráce/členovia: Samey, Delik, Luca Brassi10x, Sima
+- **Saul** — Bratislava, od 2019
+  - albumy: singly a EP novej vlny (2023)
+  - spolupráce/členovia: Gleb, SIMILIVINLIFE
+- **Nerieš** — skupina, Bratislava, od 2016
+  - albumy: Minimal (2016); HELLO (2024)
+  - spolupráce/členovia: Pil C, Separ, Sima, 13K
+- **13K** — skupina, Bratislava, od 2020, producent: BigSip
+  - albumy: BA Connect (feat. Gleb) (2024); Soldiers (2025)
+  - spolupráce/členovia: Gleb, Nerieš
+- **Samey** — Košice, od 2017, producent: Dalyb
+  - albumy: Mama neviem kedy prídem domov (2017); XYZ (2019); Anarchia (2021); Slzy ulíc (2023); PODOKNAMI (s Glebom) (2025)
+  - spolupráce/členovia: Gleb, Kontrafakt, Dalyb
+- **SIMILIVINLIFE** — Bratislava, od 2020
+  - albumy: 23:69 (2025)
+  - spolupráce/členovia: Sima, Gleb, Saul
+- **Porsche Boy** — Košice, od 2020
+  - albumy: EAST SIDE SOUND 2 (s WENom) (2025)
+  - spolupráce/členovia: WEN, Gleb, Saul
+- **WEN** — Košice, od 2020
+  - albumy: EAST SIDE SOUND 2 (s Porsche Boyom) (2025)
+  - spolupráce/členovia: Porsche Boy
+- **Erik Tresor** — Bratislava, od 2019
+  - albumy: singly a EP (2023)
+  - spolupráce/členovia: Gleb, Sima
+- **Dalyb** — Košice, od 2016, producent: Dalyb (sám)
+  - albumy: albumy a singly novej vlny (2018)
+  - spolupráce/členovia: Kontrafakt, Samey
+- **Zayo** — Košice
+  - spolupráce/členovia: Haha Crew
+- **Gumbgu** — Košice
+  - spolupráce/členovia: Haha Crew
+- **Puerto** — Košice
+  - spolupráce/členovia: Haha Crew
+- **Karlo** — Bratislava
+- **Shimmi**
+- **Radikal Chef**
+- **Tian Moon**
+- **Yael**
+- **Konex**
+- **Tomy Kotty**
+- **Guapanova**
+- **AstralKid22**
+- **Dollar Prync**
+  - spolupráce/členovia: Comebackgang
+- **sak10denz**
+  - spolupráce/členovia: Comebackgang
+- **Marko Damian**
+  - spolupráce/členovia: Comebackgang
+- **Luisa**
+  - spolupráce/členovia: Comebackgang
+- **Frayer Flexking**
+- **Big Draco** — Bratislava
+  - spolupráce/členovia: 13K
+- **Šmolki** — Bratislava
+  - spolupráce/členovia: 13K
+- **BigSip** — Bratislava
+  - spolupráce/členovia: 13K
+
+## CZ/SK crossover
+- **Calin**
+  - spolupráce/členovia: Comebackgang
+- **Viktor Sheen**
+- **Ben Cristovao**
+- **Yzomandias**
+  - spolupráce/členovia: Milion+
+- **PTK**
+- **Robin Zoot**
