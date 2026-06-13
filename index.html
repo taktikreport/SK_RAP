@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SLOVENSKÝ RAP — atlas scény (TOP 30)</title>
-<meta name="description" content="Interaktívny atlas slovenského rapu: TOP 30 interpretov, diskografie, spolupráce, mapa pôvodu, sieť spoluprác, producentský katalóg a tier list builder.">
+<title>SLOVENSKÝ RAP — atlas scény (TOP 100)</title>
+<meta name="description" content="Interaktívny atlas slovenského rapu: ~100 interpretov a skupín, diskografie, spolupráce, mapa pôvodu, sieť spoluprác, producentský katalóg a tier list builder.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -81,6 +81,7 @@
   .chip[data-gen="legenda"][aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
   .chip[data-gen="spicka"][aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#000}
   .chip[data-gen="nova"][aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#000}
+  .chip[data-gen="cz"][aria-pressed="true"]{background:#9D7BFF;border-color:#9D7BFF;color:#000}
 
   #grid-sec{padding-top:40px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
@@ -90,6 +91,10 @@
   .card[data-gen="legenda"]::before{background:var(--red)}
   .card[data-gen="spicka"]::before{background:var(--yellow)}
   .card[data-gen="nova"]::before{background:var(--teal)}
+  .card[data-gen="cz"]::before{background:#9D7BFF}
+  .card.lite{padding:14px 14px 14px 18px}
+  .card.lite .nm{font-size:19px}
+  .card.lite .real{font-size:12px}
   .card:hover{transform:translateY(-3px);border-color:var(--text)}
   .card .rank{font-family:var(--mono);font-size:12px;color:var(--muted)}
   .card .nm{font-family:var(--display);text-transform:uppercase;font-size:26px;line-height:.95;margin:2px 0 3px}
@@ -110,6 +115,7 @@
   .modal[data-gen="legenda"] .topbar{background:var(--red)}
   .modal[data-gen="spicka"] .topbar{background:var(--yellow)}
   .modal[data-gen="nova"] .topbar{background:var(--teal)}
+  .modal[data-gen="cz"] .topbar{background:#9D7BFF}
   .modal-body{padding:26px 26px 30px}
   .modal .close{position:absolute;right:14px;top:16px;background:none;border:1px solid var(--line);
     color:var(--text);width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1;z-index:2}
@@ -223,10 +229,10 @@
 <header class="hero">
   <div class="eyebrow">Atlas scény · do roku 2026</div>
   <h1 class="wordmark"><span>Slovenský</span><span class="l2">Rap</span></h1>
-  <p class="lede">Tridsať mien, ktoré držia slovenský hip-hop — od zakladateľov cez mainstreamovú špičku po novú vlnu trapu a drillu. Diskografie, spolupráce, mapa pôvodu, sieť featov, dvorní producenti aj tvoj vlastný tier list.</p>
+  <p class="lede">Sto mien, ktoré držia slovenský hip-hop — od zakladateľov cez mainstreamovú špičku po novú vlnu trapu a drillu. Jadro má plné profily, rozšírený katalóg pridáva ďalšie desiatky mien. K tomu mapa pôvodu, sieť featov, dvorní producenti aj tvoj vlastný tier list.</p>
   <div class="stats">
-    <div class="stat r"><div class="n">30</div><div class="lbl">interpretov</div></div>
-    <div class="stat y"><div class="n">3</div><div class="lbl">generácie</div></div>
+    <div class="stat r"><div class="n">100</div><div class="lbl">interpretov a skupín</div></div>
+    <div class="stat y"><div class="n">3+1</div><div class="lbl">generácie + CZ/SK presah</div></div>
     <div class="stat t"><div class="n">800k+</div><div class="lbl">mes. poslucháčov u jednotky</div></div>
   </div>
   <nav class="jump">
@@ -250,13 +256,14 @@
       <button class="chip" data-gen="legenda" aria-pressed="false">Legendy</button>
       <button class="chip" data-gen="spicka" aria-pressed="false">Špička</button>
       <button class="chip" data-gen="nova" aria-pressed="false">Nová vlna</button>
+      <button class="chip" data-gen="cz" aria-pressed="false">CZ/SK</button>
     </div>
   </div>
 </div>
 
 <section id="grid-sec">
   <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">Interpreti</h2></div>
-  <p class="sec-sub">Klikni na kartu pre bio, diskografiu, spolupráce a posledné novinky. Farebný pruh značí generáciu.</p>
+  <p class="sec-sub">Klikni na kartu pre detail. Jadro scény má plné profily (bio, diskografia, spolupráce, novinky), rozšírený katalóg má stručné overené záznamy. Farebný pruh značí generáciu; filter „CZ/SK" ukáže české presahy.</p>
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" style="display:none">Nič nesedí na tvoj filter. Skús iné slovo.</div>
 </section>
@@ -342,7 +349,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
 <script>
-const GEN={legenda:{label:"Legenda / old school",color:"#F03E2F"},spicka:{label:"Špička",color:"#FFD400"},nova:{label:"Nová vlna",color:"#2BD4C4"}};
+const GEN={legenda:{label:"Legenda / old school",color:"#F03E2F"},spicka:{label:"Špička",color:"#FFD400"},nova:{label:"Nová vlna",color:"#2BD4C4"},cz:{label:"CZ/SK crossover",color:"#9D7BFF"}};
 
 const RAPPERS=[
  {id:"kontrafakt",name:"Kontrafakt",real:"Rytmus · Ego · DJ Anys",gen:"legenda",type:"skupina",city:"Piešťany",lat:48.59,lon:17.83,since:2001,genres:["old school","battle rap"],producer:"DJ Anys",
@@ -460,8 +467,141 @@ const RAPPERS=[
  {id:"refew",name:"Refew",real:"—",gen:"spicka",type:"sólo",city:"Bratislava",lat:48.14,lon:17.07,since:2008,genres:["rap"],producer:"—",
   bio:"Spolupracovník Delika a ďalších mien strednej generácie.",
   disco:[["spoločné a sólové projekty",2012,"výber"]],
-  collabs:["Delik","Kali"],upWhen:"aktuálne",up:"Naďalej aktívny na scéne."}
+  collabs:["Delik","Kali"],upWhen:"aktuálne",up:"Naďalej aktívny na scéne."},
+ {id:"alanmurin",name:"Alan Murin",real:"Alan Murín (*1998)",gen:"spicka",type:"sólo",city:"Bratislava",since:2019,genres:["pop rap","R&B"],producer:"Alan Murin (sám)",
+  bio:"Spevák, skladateľ a producent z Bratislavy (kedysi Sane). Debutoval trilógiou EP v roku 2019, melodickým presahom prepája rap a pop.",
+  disco:[["15 23 / 23 10 / 19 98 (EP trilógia)",2019,"EP"],["TRUESELF",2022,"album"]],
+  collabs:["Kali","Rytmus","Ego","Separ","Majk Spirit","Momo","Moja Reč"],upWhen:"aktuálne",up:"Jeden z najhranejších melodických hlasov, časté spolupráce naprieč scénou."},
+ {id:"mikymora",name:"Miky Mora",real:"(*1983)",gen:"legenda",type:"sólo",city:"Bratislava",since:1997,genres:["street rap","old school"],producer:"Peter Pann",
+  bio:"Petržalský pouličný („stoka\") raper s mimoriadne rýchlym flow, polovica formácie Druhá Strana. Časté pôsobenie s producentom Petrom Pannom.",
+  disco:[["Moratón",2006,"album"],["20.08",2008,"album"]],
+  collabs:["Druhá Strana","Moloch Vlavo","Čistychov","Rytmus"],upWhen:"dlhodobo",up:"Rešpektované meno petržalskej undergroundovej školy."},
+ {id:"druhastrana",name:"Druhá Strana",real:"Miky Mora · Moloch Vlavo",gen:"legenda",type:"skupina",city:"Bratislava",since:1997,genres:["street rap","old school"],producer:"—",
+  bio:"Petržalská pouličná formácia založená 1997, jeden z pilierov bratislavského undergroundu. Duo sa rozpadlo v roku 2008.",
+  disco:[["projekty Druhej Strany",2004,"výber"]],
+  collabs:["Miky Mora","Moloch Vlavo","Čistychov"],upWhen:"klasika",up:"Vplyv na celú generáciu pouličného rapu."},
+ {id:"molochvlavo",name:"Moloch Vlavo",real:"Denis Domaracký (*1984)",gen:"legenda",type:"sólo",city:"Bratislava",since:1997,genres:["street rap"],producer:"—",
+  bio:"Druhá polovica Druhej Strany, výrazný hlas petržalského undergroundu.",
+  disco:[["sólové a skupinové projekty",2008,"výber"]],
+  collabs:["Druhá Strana","Miky Mora"],upWhen:"dlhodobo",up:"Súčasť základov bratislavskej scény."},
+ {id:"tonos",name:"Tono S.",real:"Anton Suchota",gen:"legenda",type:"sólo",city:"Bratislava",since:2006,genres:["old school","boom bap"],producer:"Beyuz",
+  bio:"Raper spätý s labelom Gramo Rokkaz, projektmi Ultrazvuk a Mater. Poctivý, textovo dbalý rap mimo mainstreamu.",
+  disco:[["Fičúringy",2015,"album"],["Návraty (s Beyuzom)",2014,"album"]],
+  collabs:["Gramo Rokkaz","Decko","Rebel"],upWhen:"dlhodobo",up:"Stálica nezávislej scény."},
+ {id:"trosky",name:"Trosky",real:"Vec · Midi",gen:"legenda",type:"skupina",city:"Zlaté Moravce",since:1997,genres:["old school"],producer:"Midi",
+  bio:"Ranná skupina Veca, ktorá ukázala, že rap sa dá robiť aj bez vulgarizmov. Album Trosky (1997) je nadčasovou klasikou.",
+  disco:[["Trosky",1997,"album"]],
+  collabs:["Vec"],upWhen:"klasika",up:"Jeden z najstarších míľnikov slovenského rapu."},
+ {id:"modrehory",name:"Modré Hory",real:"Lyrik · Bene",gen:"legenda",type:"skupina",city:"Bratislava",since:2006,genres:["alternatívny rap","funky"],producer:"—",
+  bio:"Lyricky bohatý, melodický a hravý rap. Bene spolu s Delikom nahrali oceňovaný album Záblesky (2010).",
+  disco:[["Záblesky (Delik & Bene)",2010,"album"]],
+  collabs:["Bene","Lyrik","Delik"],upWhen:"dlhodobo",up:"Obľúbená pre poetiku a atmosféru."},
+ {id:"nazovstavby",name:"Názov Stavby",real:"z Drvivej Menšiny a L.Ú.Z.A.",gen:"legenda",type:"skupina",city:"Bratislava",since:2002,genres:["old school"],producer:"DNA",
+  bio:"Bratislavská old-school formácia spájajúca členov Drvivej Menšiny a L.Ú.Z.A. Album Reč naša (2002).",
+  disco:[["Reč naša",2002,"album"]],
+  collabs:["DNA","Čistychov"],upWhen:"klasika",up:"Súčasť ranných základov scény."},
+ {id:"gramorokkaz",name:"Gramo Rokkaz",real:"Danosť · Decko · Rebel · Tono S.",gen:"legenda",type:"skupina",city:"Bratislava",since:2007,genres:["old school","boom bap"],producer:"DJ Metys",
+  bio:"Label a crew nezávislej scény. Cez Gramo Rokkaz prešiel do roku 2011 aj Separ, než sa vydal na sólo dráhu.",
+  disco:[["spoločné projekty a mixtapy",2010,"výber"]],
+  collabs:["Separ","Tono S.","Decko"],upWhen:"história",up:"Liaheň viacerých neskorších mien."},
+ {id:"dna",name:"DNA",real:"Roman Szabó (*1981)",gen:"legenda",type:"sólo",city:"Bratislava",since:2002,genres:["old school"],producer:"DNA (sám)",
+  bio:"Raper a producent, člen Drvivej Menšiny, Názvu Stavby a 4D.",
+  disco:[["Reč naša (Názov Stavby)",2002,"album"]],
+  collabs:["Názov Stavby","Drvivá Menšina"],upWhen:"dlhodobo",up:"Producentsky aj rapersky činný veterán."},
+ {id:"boywonder",name:"Boy Wonder",real:"—",gen:"legenda",type:"sólo",city:"Bratislava",since:2007,genres:["old school"],producer:"Billy Hollywood",
+  bio:"Raper a polovica dua Turbo Boost (s Billym Hollywoodom). Cenený na scéne za technickú stránku.",
+  disco:[["projekty Turbo Boost",2010,"výber"]],
+  collabs:["Kali","Moja Reč"],upWhen:"dlhodobo",up:"Rešpektované meno staršej generácie."},
+ {id:"zverina",name:"Zverina",real:"—",gen:"legenda",type:"sólo",city:"Bratislava",since:2006,genres:["old school"],producer:"—",
+  bio:"Old-school raper s množstvom spoluprác naprieč staršou aj strednou generáciou.",
+  disco:[["albumy a featy",2010,"výber"]],
+  collabs:["Moja Reč","Vec","Čistychov"],upWhen:"dlhodobo",up:"Stály hosť projektov starej školy."}
 ];
+
+// súradnice miest pre mapu [lat, lon]
+const CITY_COORDS={
+ "Bratislava":[48.15,17.11],"Piešťany":[48.59,17.83],"Trnava":[48.38,17.59],
+ "Nové Zámky":[47.99,18.16],"Košice":[48.72,21.26],"Zlaté Moravce":[48.38,18.40],
+ "Žilina":[49.22,18.74],"Prešov":[48.99,21.24],"Banská Bystrica":[48.74,19.15],
+ "Nitra":[48.31,18.09],"Poprad":[49.06,20.30],"Trenčín":[48.89,18.04]
+};
+
+// ROZŠÍRENÝ KATALÓG (lite) — overiteľné základy: meno, generácia, mesto/crew, krátka poznámka
+const LITE=[
+ // —— legendy / old school ——
+ ["amo","A.M.O","legenda","skupina","Bratislava","Viktor Hazard · Moe · Opak","Bratislavská old-school formácia."],
+ ["viktorhazard","Viktor Hazard","legenda","sólo","Bratislava","A.M.O","Raper a organizátor, člen A.M.O."],
+ ["moe","Moe","legenda","sólo","Bratislava","A.M.O","Člen formácie A.M.O."],
+ ["opak","Opak","legenda","sólo","Bratislava","A.M.O","Člen formácie A.M.O."],
+ ["agresorlotor","Agresor Lotor","legenda","sólo","","","Old-school MC staršej generácie."],
+ ["drvivamensina","Drvivá Menšina","legenda","skupina","Bratislava","Bacil · DNA · Šegy 100","Bratislavská old-school skupina."],
+ ["luza","L.Ú.Z.A.","legenda","skupina","Bratislava","Čistychov · Hajtkovič · Slipo","Súčasť Názvu Stavby."],
+ ["jss","JSS","legenda","skupina","","A.D. · Džuva · Lyrik H","Old-school zoskupenie."],
+ ["elpe","eLPe","legenda","sólo","","","Raper a textár staršej generácie."],
+ ["misobiely","Mišo Biely","legenda","sólo","","","Raper spätý so scénou 2000s."],
+ ["moneyg","Money G","legenda","sólo","Piešťany","","Piešťanský raper z raných čias scény."],
+ ["decko","Decko","legenda","sólo","Bratislava","Gramo Rokkaz","Člen labelu Gramo Rokkaz."],
+ ["rebel","Rebel","legenda","sólo","Bratislava","Gramo Rokkaz · Mater","Člen Gramo Rokkaz."],
+ ["danost","Danosť","legenda","sólo","Bratislava","Gramo Rokkaz","Člen Gramo Rokkaz."],
+ ["bene","Bene","legenda","sólo","Bratislava","Modré Hory","Polovica Modrých Hôr; album Záblesky s Delikom (2010)."],
+ ["lyrik","Lyrik","legenda","sólo","Bratislava","Modré Hory","Polovica Modrých Hôr."],
+ ["otecko","Otecko","legenda","sólo","Bratislava","H16","Zakladajúci člen H16 (Kardinál)."],
+ ["cigo","Cigo","legenda","sólo","Bratislava","H16","Člen skupiny H16."],
+ ["djanys","DJ Anys","legenda","sólo","Piešťany","Kontrafakt","DJ a producent Kontrafaktu."],
+ ["supa","Supa","legenda","sólo","Bratislava","Moja Reč","Rapujúca časť Mojej Reči."],
+ ["stanica","Stanica projekt","legenda","skupina","","Jano Dice · Fako · Hlava","Old-school projekt."],
+ ["sedlaci","SEdláci","legenda","skupina","","Lúzer · ReSeT · T-Peg","Old-school zoskupenie."],
+ ["precone","Prečo Ne?!","legenda","skupina","","Edi eM · Holub","Old-school duo."],
+ ["zlastrava","Zlá Strava","legenda","skupina","","Labrak · Osma","Old-school skupina."],
+ ["xiv","Štrnásť (XIV)","legenda","skupina","Bratislava","Momo · Lektor · Suchý Pes","Petržalská formácia, z ktorej vzišiel Momo."],
+ ["turboboost","Turbo Boost","legenda","skupina","Bratislava","Billy Hollywood · Boy Wonder","Produkčno-rapové duo."],
+ ["dramatikz","Dramatikz","legenda","skupina","","Radikal · Masif · Yaksha","Old-school crew."],
+ ["dvojhplus","2H+","legenda","skupina","","Suvereno · Vladis","Spirituálnejšia poloha rapu."],
+ ["suvereno","Suvereno","legenda","sólo","","2H+","Raper s duchovnejšími textami."],
+ ["hajtkovic","Hajtkovič","legenda","sólo","Bratislava","L.Ú.Z.A.","Člen L.Ú.Z.A. a Názvu Stavby."],
+ ["slipo","Slipo","legenda","sólo","Bratislava","L.Ú.Z.A.","Člen L.Ú.Z.A."],
+ ["segy100","Šegy 100","legenda","sólo","Bratislava","Drvivá Menšina","Člen Drvivej Menšiny."],
+ ["bacil","Bacil","legenda","sólo","Bratislava","Drvivá Menšina","Člen Drvivej Menšiny."],
+ // —— špička / stredná generácia ——
+ ["cist","Čis T","spicka","sólo","","","Raper strednej generácie, časté featy."],
+ ["minimo","MiniMo","spicka","sólo","Bratislava","DMS","Súčasť okruhu DMS."],
+ ["laris","Laris Diam","spicka","sólo","","","Raper/spevák; projekt Roots s Rytmusom (2026)."],
+ ["lvcasdope","Lvcas Dope","spicka","sólo","","","Raper a producent."],
+ ["majself","Majself","spicka","sólo","","","Raper strednej generácie."],
+ ["adiss","ADiss","spicka","sólo","","","Raper známy aj z crossover spoluprác."],
+ // —— nová vlna ——
+ ["zayo","Zayo","nova","sólo","Košice","Haha Crew","Člen košickej Haha Crew."],
+ ["gumbgu","Gumbgu","nova","sólo","Košice","Haha Crew","Pôsobil v Haha Crew."],
+ ["puerto","Puerto","nova","sólo","Košice","Haha Crew","Člen Haha Crew."],
+ ["karlo","Karlo","nova","sólo","Bratislava","","Hosť na albume Brat (Pil C × Luca Brassi10x, 2025)."],
+ ["shimmi","Shimmi","nova","sólo","","","Raper novej vlny, časté featy."],
+ ["radikalchef","Radikal Chef","nova","sólo","","","Výrazná osobnosť mladej scény."],
+ ["tianmoon","Tian Moon","nova","sólo","","","Mladé meno hip-hopovej scény."],
+ ["yael","Yael","nova","sólo","","","Interpret mladšej vlny."],
+ ["konex","Konex","nova","sólo","","","Raper novej vlny; album Disturbia (2025)."],
+ ["tomykotty","Tomy Kotty","nova","sólo","","","Raper novej vlny; album Ja, Zloduch (2025)."],
+ ["guapanova","Guapanova","nova","sólo","","","Mladé meno, featy v novej vlne."],
+ ["astralkid","AstralKid22","nova","sólo","","","Raper mladšej vlny."],
+ ["dollarprync","Dollar Prync","nova","sólo","","Comebackgang","Raper z okruhu Comebackgang."],
+ ["sak10denz","sak10denz","nova","sólo","","Comebackgang","Raper z okruhu Pil C-ho."],
+ ["markodamian","Marko Damian","nova","sólo","","Comebackgang","Člen Comebackgangu."],
+ ["luisa","Luisa","nova","sólo","","Comebackgang","Raperka z okruhu Comebackgang."],
+ ["frayer","Frayer Flexking","nova","sólo","","","Raper mladšej vlny."],
+ ["bigdraco","Big Draco","nova","sólo","Bratislava","13K","Člen drillovej skupiny 13K."],
+ ["smolki","Šmolki","nova","sólo","Bratislava","13K","Člen skupiny 13K."],
+ ["bigsip","BigSip","nova","sólo","Bratislava","13K","Producent skupiny 13K."],
+ // —— CZ/SK crossover (mimo poradia) ——
+ ["calin","Calin","cz","sólo","","Comebackgang","Moldavsko-český raper, štartoval pod slovenským labelom Comebackgang."],
+ ["viktorsheen","Viktor Sheen","cz","sólo","","","Český raper s presahom na SK scénu (hosť na Real Newz)."],
+ ["bencristovao","Ben Cristovao","cz","sólo","","","Česko-vietnamský raper/spevák, časté SK spolupráce."],
+ ["yzomandias","Yzomandias","cz","sólo","","Milion+","Líder českej scény, hráva aj na SK festivaloch."],
+ ["ptk","PTK","cz","sólo","","","Český raper, častý na SK pódiách."],
+ ["robinzoot","Robin Zoot","cz","sólo","","","Český raper, SK spolupráce."]
+];
+// rozbaľ lite položky do RAPPERS
+LITE.forEach(a=>RAPPERS.push({id:a[0],name:a[1],gen:a[2],type:a[3],city:a[4],crew:a[5],note:a[6],lite:true}));
+// doplň súradnice tam, kde chýbajú
+RAPPERS.forEach(a=>{if(a.lat==null&&a.city&&CITY_COORDS[a.city]){a.lat=CITY_COORDS[a.city][0];a.lon=CITY_COORDS[a.city][1];}});
 
 const PRODUCERS=[
  ["Mjay Beatz","Separ, Pil C, Luca Brassi10x — jeden z najvyťaženejších producentov dnešnej špičky."],
@@ -478,13 +618,16 @@ const PRODUCERS=[
 const grid=document.getElementById('grid'),emptyEl=document.getElementById('empty'),qEl=document.getElementById('q');
 let activeGen=null;
 const rankOf=i=>String(i+1).padStart(2,'0');
-function cardHTML(r,i){return `<article class="card" data-gen="${r.gen}" data-id="${r.id}" tabindex="0">
- <span class="since">${r.since}</span><span class="rank">#${rankOf(i)} · ${r.type}</span>
- <h3 class="nm">${r.name}</h3><div class="real">${r.real} · ${r.city}</div>
- <div class="meta">${r.genres.map(g=>`<span class="tag">${g}</span>`).join('')}</div></article>`;}
+function cardHTML(r){
+ const right=r.lite?`<span class="tag">${r.crew||'sólo'}</span>`:(r.genres||[]).map(g=>`<span class="tag">${g}</span>`).join('');
+ const sub=r.lite?(r.note||''):`${r.real} · ${r.city}`;
+ return `<article class="card${r.lite?' lite':''}" data-gen="${r.gen}" data-id="${r.id}" tabindex="0">
+ ${r.since?`<span class="since">${r.since}</span>`:''}<span class="rank">${GEN[r.gen].label} · ${r.type}</span>
+ <h3 class="nm">${r.name}</h3><div class="real">${sub}</div>
+ <div class="meta">${right}</div></article>`;}
 function render(){const q=qEl.value.trim().toLowerCase();let shown=0;
- grid.innerHTML=RAPPERS.map((r,i)=>{const hay=(r.name+' '+r.real+' '+r.city+' '+r.genres.join(' ')+' '+GEN[r.gen].label).toLowerCase();
-  if((!activeGen||r.gen===activeGen)&&(!q||hay.includes(q))){shown++;return cardHTML(r,i);}return'';}).join('');
+ grid.innerHTML=RAPPERS.map(r=>{const hay=(r.name+' '+(r.real||'')+' '+(r.city||'')+' '+(r.crew||'')+' '+(r.note||'')+' '+(r.genres||[]).join(' ')+' '+GEN[r.gen].label).toLowerCase();
+  if((!activeGen||r.gen===activeGen)&&(!q||hay.includes(q))){shown++;return cardHTML(r);}return'';}).join('');
  emptyEl.style.display=shown?'none':'block';bindCards();}
 function bindCards(){document.querySelectorAll('.card').forEach(c=>{
  c.addEventListener('click',()=>openModal(c.dataset.id));
@@ -500,17 +643,22 @@ qEl.addEventListener('input',render);
 const modalBg=document.getElementById('modalBg'),modal=document.getElementById('modal'),modalBody=document.getElementById('modalBody');
 const byId=id=>RAPPERS.find(r=>r.id===id),idxOf=id=>RAPPERS.findIndex(r=>r.id===id);
 function openModal(id){const r=byId(id);if(!r)return;modal.dataset.gen=r.gen;
- const disco=r.disco.map(d=>`<li><span class="yr">${d[1]}</span><span class="tt">${d[0]}</span><span class="ty">${d[2]}</span></li>`).join('');
- const collabs=r.collabs.map(n=>{const t=RAPPERS.find(x=>x.name===n);
-  return t?`<span class="collab" data-go="${t.id}">${n}</span>`:`<span class="collab" style="opacity:.55;cursor:default">${n}</span>`;}).join('');
- modalBody.innerHTML=`<div class="m-rank">#${rankOf(idxOf(id))} · ${GEN[r.gen].label} · ${r.type}</div>
-  <h3 class="m-nm">${r.name}</h3><div class="m-real">${r.real} · ${r.city} · na scéne od ${r.since}</div>
-  <div class="m-meta">${r.genres.map(g=>`<span class="tag">${g}</span>`).join('')}</div>
-  <p class="m-bio">${r.bio}</p>
-  <div class="kv"><span>Dvorný producent:</span> <b>${r.producer&&r.producer!=='—'?r.producer:'neuvedený'}</b></div>
-  <div class="block"><h4>Diskografia (výber)</h4><ul class="disco">${disco}</ul></div>
-  <div class="block"><h4>Významné spolupráce</h4><div class="collabs">${collabs}</div></div>
-  <div class="block"><h4>Posledné novinky</h4><div class="update"><span class="when">${r.upWhen}</span>${r.up}</div></div>`;
+ const metaSub=[r.city,r.since?('na scéne od '+r.since):'',r.crew?('crew: '+r.crew):''].filter(Boolean).join(' · ');
+ let html=`<div class="m-rank">${GEN[r.gen].label} · ${r.type}</div>
+  <h3 class="m-nm">${r.name}</h3><div class="m-real">${[r.real&&r.real!=='—'?r.real:'',metaSub].filter(Boolean).join(' · ')}</div>`;
+ if(r.genres&&r.genres.length)html+=`<div class="m-meta">${r.genres.map(g=>`<span class="tag">${g}</span>`).join('')}</div>`;
+ if(r.bio)html+=`<p class="m-bio">${r.bio}</p>`;
+ else if(r.note)html+=`<p class="m-bio">${r.note}</p>`;
+ if(r.producer&&r.producer!=='—')html+=`<div class="kv"><span>Dvorný producent:</span> <b>${r.producer}</b></div>`;
+ if(r.disco&&r.disco.length){const disco=r.disco.map(d=>`<li><span class="yr">${d[1]}</span><span class="tt">${d[0]}</span><span class="ty">${d[2]}</span></li>`).join('');
+  html+=`<div class="block"><h4>Diskografia (výber)</h4><ul class="disco">${disco}</ul></div>`;}
+ const links=(r.collabs&&r.collabs.length?r.collabs:(r.crew?r.crew.split(' · '):[]));
+ if(links.length){const collabs=links.map(n=>{const t=RAPPERS.find(x=>x.name===n);
+   return t?`<span class="collab" data-go="${t.id}">${n}</span>`:`<span class="collab" style="opacity:.55;cursor:default">${n}</span>`;}).join('');
+  html+=`<div class="block"><h4>${r.collabs?'Významné spolupráce':'Súčasť / členovia'}</h4><div class="collabs">${collabs}</div></div>`;}
+ if(r.up)html+=`<div class="block"><h4>Posledné novinky</h4><div class="update"><span class="when">${r.upWhen||''}</span>${r.up}</div></div>`;
+ if(r.lite)html+=`<div class="kv" style="margin-top:14px;color:var(--muted)"><span>Záznam z rozšíreného katalógu — stručný overený profil.</span></div>`;
+ modalBody.innerHTML=html;
  modalBg.classList.add('open');document.body.style.overflow='hidden';
  modalBody.querySelectorAll('.collab[data-go]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.go)));}
 function closeModal(){modalBg.classList.remove('open');document.body.style.overflow='';}
@@ -530,7 +678,7 @@ function buildMap(){
  svg.setAttribute('viewBox',`${T.x-6} ${T.y-6} ${T.w+12} ${T.h+12}`);
  const proj=(lon,lat)=>[T.x+(lon-LON0)/(LON1-LON0)*T.w, T.y+(LAT1-lat)/(LAT1-LAT0)*T.h];
  const cities={};
- RAPPERS.forEach(r=>{(cities[r.city]=cities[r.city]||{lat:r.lat,lon:r.lon,list:[]}).list.push(r.name);});
+ RAPPERS.forEach(r=>{if(!r.city||r.lat==null)return;(cities[r.city]=cities[r.city]||{lat:r.lat,lon:r.lon,list:[]}).list.push(r.name);});
  const NS='http://www.w3.org/2000/svg';
  Object.entries(cities).forEach(([c,o])=>{
   const [x,y]=proj(o.lon,o.lat);
@@ -553,8 +701,11 @@ const nodes=RAPPERS.map(r=>({id:r.id,name:r.name,gen:r.gen,deg:0,x:0,y:0,vx:0,vy
 const nmap={};nodes.forEach(n=>nmap[n.id]=n);
 const nameToId={};RAPPERS.forEach(r=>nameToId[r.name]=r.id);
 const edges=[],seen=new Set();
-RAPPERS.forEach(r=>r.collabs.forEach(cn=>{const t=nameToId[cn];if(!t||t===r.id)return;
- const k=[r.id,t].sort().join('|');if(seen.has(k))return;seen.add(k);edges.push([r.id,t]);nmap[r.id].deg++;nmap[t].deg++;}));
+function addEdge(aId,bId){if(!aId||!bId||aId===bId)return;const k=[aId,bId].sort().join('|');if(seen.has(k))return;seen.add(k);edges.push([aId,bId]);nmap[aId].deg++;nmap[bId].deg++;}
+RAPPERS.forEach(r=>{
+ (r.collabs||[]).forEach(cn=>addEdge(r.id,nameToId[cn]));
+ if(r.crew)r.crew.split(' · ').forEach(cn=>addEdge(r.id,nameToId[cn.trim()]));
+});
 function resize(){DPR=window.devicePixelRatio||1;W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*DPR;canvas.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
 function seed(){nodes.forEach((n,i)=>{const a=i/nodes.length*Math.PI*2;n.x=W/2+Math.cos(a)*Math.min(W,H)*0.33+(Math.random()-.5)*40;n.y=H/2+Math.sin(a)*Math.min(W,H)*0.33+(Math.random()-.5)*40;n.vx=0;n.vy=0;});}
 function tick(){
