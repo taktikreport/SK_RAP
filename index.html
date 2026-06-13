@@ -364,18 +364,18 @@
 
 <section id="game-sec">
   <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">The Rap Game</h2></div>
-  <p class="sec-sub">Súťažný kvíz: 10 náhodných otázok, 15 sekúnd na každú (nestihneš googliť), správne odpovede až na konci. Najvyššie skóre a najrýchlejší čas vedú rebríček. Hrať môžeš opakovane.</p>
+  <p class="sec-sub">Súťažný kvíz: 10 náhodných otázok, 10 sekúnd na každú (nestihneš googliť), správne odpovede až na konci. Najvyššie skóre a najrýchlejší čas vedú rebríček. Hrať môžeš opakovane.</p>
 
   <div id="game-intro" class="game-card">
     <div class="game-big" id="poolInfo">Pripravujem otázky…</div>
     <label class="game-label" for="nick">Tvoja prezývka</label>
     <input id="nick" class="game-input" type="text" maxlength="24" placeholder="napr. RapFanBA" autocomplete="off">
     <button class="btn primary" id="startBtn">Štart hry →</button>
-    <p class="game-hint">10 otázok · 15 s na otázku · odpovede na konci · pri zhode rozhoduje čas</p>
+    <p class="game-hint">10 otázok · 10 s na otázku · odpovede na konci · pri zhode rozhoduje čas</p>
   </div>
 
   <div id="game-play" class="game-card" style="display:none">
-    <div class="qtop"><span class="qcount" id="qcount">Otázka 1/10</span><span class="qtimerN" id="qtimerN">15</span></div>
+    <div class="qtop"><span class="qcount" id="qcount">Otázka 1/10</span><span class="qtimerN" id="qtimerN">10</span></div>
     <div class="qtimer"><div class="qtimer-bar" id="qbar"></div></div>
     <div class="qcat" id="qcat"></div>
     <div class="qtext" id="qtext"></div>
@@ -911,7 +911,7 @@ if(location.hash.startsWith('#tier='))decodeState(location.hash.slice(6));
 // Rebríček: prázdne = lokálny (localStorage). Pre ZDIEĽANÝ vlož Firebase RTDB URL,
 // napr. "https://tvoj-projekt-default-rtdb.europe-west1.firebasedatabase.app"
 const LEADERBOARD_URL="";
-const Q_TIME=15;
+const Q_TIME=10;
 let QUESTIONS=[];
 const FALLBACK_Q=[
  {id:"q0001",type:"single",category:"albumy",difficulty:1,artist:"Separ",question:"Ktorý z týchto albumov vydal Separ v roku 2023?",options:["Pancier","OG","Flowdemort","Pirát","Neviem"],correct:[2],explain:"Flowdemort vyšiel 2023; Neviem až 2025."},
